@@ -9,9 +9,9 @@ const Cycles = () => {
   return (
     <div>
       <div className="cycles-container">
-      <div className="cycles-card">
-        <img className="cycle-image" src={Image} alt="Cycle" />
-        <div className="cycle-details">
+        <div className="cycles-card">
+          <img className="cycle-image" src={Image} alt="Cycle" />
+          <div className="cycle-details">
           <div className="cycle-info">
             <p>Price: $300</p>
             <p>Owner: Sudeshna</p>
@@ -20,23 +20,27 @@ const Cycles = () => {
       </div>
 
       <div className="cycles-card">
-        <img className="cycles-image" src={Image2} alt="Cycle" />
-        <div className="cycles-details">
-          <div className="cycles-info">
+        <div className="cycles-card">
+          <img className="cycle-image" src={Image2} alt="Cycle" />
+          <div className="cycle-details">
+          <div className="cycle-info">
             <p>Price: $150</p>
             <p>Owner: Vinoothna</p>
           </div>
         </div>
       </div>
+      </div>
 
       <div className="cycles-card">
-        <img className="cycles-image" src={Image3} alt="Cycle" />
-        <div className="cycles-details">
-          <div className="cycles-info">
+      <div className="cycles-card">
+        <img className="cycle-image" src={Image3} alt="Cycle" />
+        <div className="cycle-details">
+          <div className="cycle-info">
             <p>Price: $200</p>
             <p>Owner: Keerthi</p>
           </div>
         </div>
+      </div>
       </div>
     </div>
     </div>

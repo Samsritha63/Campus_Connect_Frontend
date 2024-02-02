@@ -7,7 +7,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from './Pages/HomePage';
 import Amenities from './Pages/Amenities';
 import Events from './Pages/Events';
-import Cycles from './Pages/Cycles'
+import Cycles from './Pages/Cycles';
+import Mess from './Pages/Mess';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -19,7 +20,7 @@ root.render(
         <Route path='amenities' element={<Amenities />} />
         <Route path="events" element={<Events />} />
         <Route path="cycles" element={<Cycles />} />
-        {/* <Route path="mess" element={<Mess />} /> */}
+        <Route path="mess" element={<Mess />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

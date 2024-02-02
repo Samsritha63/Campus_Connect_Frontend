@@ -1,5 +1,11 @@
+.cycles-container {
+  display: flex;
+  justify-content: space-around;
+}
+
 .cycles-card {
   width: 200px;
+  height: 400px;
   margin: 10px;
   border-radius: 10px;
   box-shadow: 0px 4px 8px rgba(184, 118, 118, 0.4);
@@ -8,7 +14,7 @@
 
 .cycle-image {
   width: 100%;
-  height: 100%;
+  height: 70%;
   object-fit: cover; 
   border-radius: 10px 10px 0 0; 
 }

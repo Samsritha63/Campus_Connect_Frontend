@@ -6,6 +6,7 @@ import TopHeader from './TopHeader';
 import amenities from "../constants/assets/amenities.jpg";
 import Event from "../constants/assets/Event.jpg";
 import coupons from "../constants/assets/coupons.jpg";
+// import Mess from './Mess';
 
 function App() {
   return (

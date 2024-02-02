@@ -1,22 +1,44 @@
 // Cycles.js
 import React from "react";
 import "./Cycles.css";
-import cyclesData from "./cyclesData";  
+import Image from "../constants/assets/c1.jpg";
+import Image2 from "../constants/assets/c2.jpg";
+import Image3 from "../constants/assets/c3.jpg";
 
 const Cycles = () => {
   return (
     <div>
-      {cyclesData.map((cycle, index) => (
-        <div key={index} className="cycle-card">
-          <img className="cycle-image" src={cycle.imageUrl} alt="Cycle" />
-          <div className="cycle-details">
-            <div className="cycle-info">
-              <p>Price: ${cycle.price}</p>
-              <p>Owner: {cycle.owner}</p>
-            </div>
+      <div className="cycles-container">
+      <div className="cycles-card">
+        <img className="cycle-image" src={Image} alt="Cycle" />
+        <div className="cycle-details">
+          <div className="cycle-info">
+            <p>Price: $300</p>
+            <p>Owner: Sudeshna</p>
           </div>
         </div>
-      ))}
+      </div>
+
+      <div className="cycles-card">
+        <img className="cycles-image" src={Image2} alt="Cycle" />
+        <div className="cycles-details">
+          <div className="cycles-info">
+            <p>Price: $150</p>
+            <p>Owner: Vinoothna</p>
+          </div>
+        </div>
+      </div>
+
+      <div className="cycles-card">
+        <img className="cycles-image" src={Image3} alt="Cycle" />
+        <div className="cycles-details">
+          <div className="cycles-info">
+            <p>Price: $200</p>
+            <p>Owner: Keerthi</p>
+          </div>
+        </div>
+      </div>
+    </div>
     </div>
   );
 };

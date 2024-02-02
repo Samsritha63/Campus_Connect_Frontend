@@ -9,6 +9,7 @@ import Amenities from './Pages/Amenities';
 import Events from './Pages/Events';
 import Cycles from './Pages/Cycles'
 
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

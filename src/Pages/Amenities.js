@@ -4,12 +4,16 @@ import Cycles from "./Cycles";
 import Mattresses from "./Mattresses";
 import Electronics from "./Electronics";
 import Others from "./Others";
-
+import TopHeader from "./TopHeader";
 const Amenities = () => {
   const [selectedTab, setSelectedTab] = useState("Home");
 
   return (
+    
     <div className="amenities-container">
+      <header className="App-header">
+        <TopHeader />
+      </header>
       <div className="amenities-content-container">
         <div className="amenities-tabs">
           <button

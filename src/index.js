@@ -3,11 +3,24 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import HomePage from './Pages/HomePage';
+import Amenities from './Pages/Amenities';
+import Events from './Pages/Events';
+import Cycles from './Pages/Cycles'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path='amenities' element={<Amenities />} />
+        <Route path="events" element={<Events />} />
+        <Route path="cycles" element={<Cycles />} />
+        {/* <Route path="mess" element={<Mess />} /> */}
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>
 );
 

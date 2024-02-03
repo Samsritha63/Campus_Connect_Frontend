@@ -129,7 +129,13 @@ const handleChange = (e) => {
   };
 
   return (
-    <div className="App" style={{ backgroundImage: `url(${bg5})`, backgroundSize: 'contain', backgroundPosition: 'bottom'}}>
+    <div className="App" style={{
+      backgroundImage: `url(${bg5})`,
+      backgroundSize: 'cover',
+  backgroundPosition: 'bottom',
+  backgroundRepeat: 'no-repeat'
+    }}
+    >
       <header className="App-header" >
         <TopHeader color="#87CEEB"/>
         <div className="add-button-container">

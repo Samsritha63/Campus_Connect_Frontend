@@ -6,20 +6,21 @@ import TopHeader from './TopHeader';
 import amenities from "../constants/assets/amenities.jpg";
 import Event from "../constants/assets/Event.jpg";
 import coupons from "../constants/assets/coupons.jpg";
-import bg2 from "../constants/assets/bg2.jpg"
+import bg2 from "../constants/assets/bg10.jpg"
 // import Mess from './Mess';
 
 function App() {
   return (
     <div className="App" style={{ backgroundImage: `url(${bg2})`, backgroundSize: 'contain', backgroundPosition: 'bottom' , height: '100vh'}}>
       <header className="App-header">
-        <TopHeader color="#8F5A8E"/>
+        <TopHeader color="#FFBBD0"/>
       </header>
 
       <main className="main-cards">
         <Link to="/Amenities">
           <Card
             title="Memories On Sale"
+            tagline="Amenities"
             content="Is this a Fish Market? It might just as well be!"
             imageSrc={amenities}
           />

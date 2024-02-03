@@ -33,6 +33,13 @@ const TopHeader = ({color}) => {
     borderRadius: '50%',
   };
 
+  const imgStyles2 = {
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover', // or 'contain' based on your preference
+    borderRadius: '50%',
+  };
+
   const Headerstyles = {
     position: 'fixed',
     backgroundColor: color, // Set your desired background color
@@ -42,6 +49,8 @@ const TopHeader = ({color}) => {
 
   const extraProfileIconStyles = {
     position: 'absolute',
+    width: '50px',
+    height: '50px',
     top: '25px',
     right: '20px', // Align to the top right corner
     fontSize: '40px',
@@ -64,7 +73,9 @@ const TopHeader = ({color}) => {
       </Link>
       <Link to="/profile">
         <div className="extra-profile-icon" style={extraProfileIconStyles}>
-          <i className="fa fa-user" aria-hidden="true"></i>
+        <img src={ProfileIcon} style={imgStyles2}/>
+        <p style={{color:'black', fontSize:'15px', marginTop:'-9px'}}>profile</p>
+          {/* <i className="fa fa-user" aria-hidden="true"></i> */}
         </div>
       </Link>
       <div className='Title' style={titles}>Campus Connect </div>

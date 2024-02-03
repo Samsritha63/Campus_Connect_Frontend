@@ -263,7 +263,7 @@ opup-container {
 .add-button-container{
   position: absolute;
   top: 25px; /* Adjust the top value as needed */
-  right: 60px; /* Adjust the right value as needed */
+  right: 70px; /* Adjust the right value as needed */
   padding: 10px;
   border-radius: 5px;
 }

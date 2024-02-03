@@ -112,7 +112,7 @@ const Events = () => {
   return (
     <>
       <TopHeader color="#87CEEB" />
-      <div className="App" style={{ backgroundImage: `url(${bg4})`, backgroundSize: 'cover', backgroundPosition: 'bottom', height: '86vh' }}>
+      <div className="App" style={{ backgroundImage: `url(${bg4})`, backgroundSize: 'cover', backgroundPosition: 'bottom', height: '86vh'}}>
         <div className="event-page">
           <div className="event-sidebar">
             <h2 style={{marginLeft:'10px', marginBottom: '25px'}}>Events</h2>
@@ -124,7 +124,7 @@ const Events = () => {
               ))}
               <div className="event-button">
                 {canAddEvent ?
-                  <button onClick={openEventPopup} style={{ color: "white", borderRadius: "25px", fontWeight: "bold" }}>
+                  <button onClick={openEventPopup} style={{ color: "white", borderRadius: "25px", fontWeight: "bold", fontFamily:"monospace" }}>
                     ADD EVENT
                   </button> :
                   null}
@@ -134,18 +134,18 @@ const Events = () => {
           <div className="event-details">
             {selectedEvent ? (
               <>
-                <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <img className="event-image" src={selectedEvent.image} alt="Cycle" style={{ width: 250, height: 200 }} />
+                <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' , marginTop: "15px"}}>
+                  <img className="event-image" src={selectedEvent.image} alt="Cycle" style={{ width: 250, height: 200, marginRight: '10px'  }} />
                   <div style={{ marginLeft: "10px" }}>
                     <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <p style={{ fontSize: "40px" }}>{selectedEvent.name}</p>
+                      <p style={{ fontSize: "40px", fontWeight: 'bold', margin: 0}}>{selectedEvent.name}</p>
                       {canAddEvent ?
-                        <button onClick={() => handleDeleteClick(selectedEvent, selectedEvent.name)}>
+                        <button onClick={() => handleDeleteClick(selectedEvent, selectedEvent.name)} style={{fontFamily:"monospace"}}>
                           Delete Event
                         </button>
                         : null}
                     </div>
-                    <p>{selectedEvent.description}</p>
+                    <p style={{ fontSize: "16px", textAlign: 'left' }} >{selectedEvent.description}</p>
                   </div>
                 </div>
 
@@ -156,14 +156,31 @@ const Events = () => {
                       {selectedSubEvent && selectedSubEvent.id === subEvent.id ? (
                         'Registered'
                       ) : (
-                        <button onClick={() => {
+                        <button 
+                        style={{
+                          fontFamily:"monospace",
+                          fontSize: '16px',
+                          borderRadius: '5px',
+                          padding: '10px 15px',
+                          marginRight: '10px',
+                        }}
+                        onClick={() => {
                           window.open(subEvent.link, '_blank');
                         }}>Register</button>
                       )}
                     </li>
                   ))}
                 </ul>
-                <button onClick={() => {
+                <button 
+                style={{
+                  fontSize: '18px',
+                  borderRadius: '5px',
+                  padding: '10px 25px',
+                  marginRight: '10px',
+                  marginTop: '15px',
+                  fontFamily:"monospace"
+                }}
+                onClick={() => {
                   window.open(selectedEvent.website_link, '_blank');
                 }}>Visit Website</button>
                 {selectedSubEvent && (

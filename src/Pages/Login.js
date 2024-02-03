@@ -120,7 +120,7 @@ function Login() {
                     </div>
                 </div>
 
-                <button type="submit" style={{borderRadius: '25px', backgroundColor: 'lightpink', fontWeight:'bold', color:'white'}}>Login</button>
+                <button type="submit" style={{borderRadius: '10px', padding: '10px 30px',backgroundColor: 'lightpink', fontWeight:'bold', color:'white', backgroundColor: '#66689B'}}>Login</button>
             </form>
             <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={handleSnackbarClose}>
                 <MuiAlert elevation={6} variant="filled" severity={snackbarSeverity} onClose={handleSnackbarClose}>

@@ -74,7 +74,7 @@ const Amenities = () => {
       <header className="App-header">
         <TopHeader color="#87CEEB"/>
       </header>
-      <div className="amenities-content-container">
+      <div className="amenities-content-container" style={{overflow:'hidden'}}>
         <div className="amenities-tabs">
           <div
             className={`amenities-tab ${selectedTab === "cycles" ? "active" : "default"}`}

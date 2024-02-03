@@ -5,6 +5,7 @@ import TopHeader from './TopHeader';
 import '../App.css';
 import { useNavigate } from 'react-router-dom';
 import {useSelector} from "react-redux"; 
+import bg2 from "../constants/assets/bg10.jpg"
 // import { makeStyles } from '@mui/styles';
 
 // const useStyles = makeStyles((theme) => ({
@@ -47,7 +48,7 @@ const Profile = () => {
                 <TopHeader color="#FFBBD0"/>
         </header>
         <Container maxWidth="sm" className="container">
-            <Paper elevation={3} style={{ padding: '20px', margin: '20px', marginTop: '140px' }}>
+            <Paper elevation={3} style={{ padding: '20px', margin: '20px', marginTop: '50px' }}>
                 <Typography variant="h4" gutterBottom>
                     Student Details
                 </Typography>

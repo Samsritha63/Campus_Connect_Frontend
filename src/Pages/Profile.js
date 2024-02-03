@@ -42,10 +42,11 @@ const Profile = () => {
     };
 
     return (
-        <Container maxWidth="sm" className="container">
-            <header className="App-header">
+        <>
+        <header className="App-header">
                 <TopHeader color="#FFBBD0"/>
-            </header>
+        </header>
+        <Container maxWidth="sm" className="container">
             <Paper elevation={3} style={{ padding: '20px', margin: '20px', marginTop: '140px' }}>
                 <Typography variant="h4" gutterBottom>
                     Student Details
@@ -87,6 +88,7 @@ const Profile = () => {
                 </button>
             </Paper>
         </Container >
+    </>
     );
 };
 

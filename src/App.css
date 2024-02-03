@@ -107,6 +107,7 @@ a.active {
   justify-content: center;
 }
 .cards-container {
+  margin-top: -100px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

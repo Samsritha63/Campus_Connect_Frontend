@@ -3,7 +3,7 @@ import "./Amenities.css";
 import Utilities from "./Utilities";
 import TopHeader from "./TopHeader";
 import SellPopup from "./SellPopup";
-import bg3 from "../constants/assets/bg13.jpg"
+import bg3 from "../constants/assets/bg7.jpg"
 import {useSelector} from "react-redux"; 
 import axios from "axios";
 import { URL } from "../constants/actionTypes";
@@ -20,7 +20,7 @@ const Amenities = () => {
   const [snackbarSeverity, setSnackbarSeverity] = useState('success'); // or 'error' for unsuccessful
   const [snackbarMessage, setSnackbarMessage] = useState('');
   const [registered, setRegistered] = useState(false);
-  const [cnt,setCnt]=useState(0);
+  const [cnt,setCnt]=useState(true);
   var roll_no= JSON.parse(localStorage.getItem("userInfo"))["roll_no"];
 
 
@@ -29,6 +29,7 @@ const Amenities = () => {
   };
 
   const closeSellPopup = () => {
+    setRegistered(false);
     setSellPopupOpen(false); 
   };
 
@@ -52,6 +53,7 @@ const Amenities = () => {
             setCost("")
             // onClose=false;
             setRegistered(true);
+            setCnt(!cnt);
             setSnackbarSeverity('success');
             setSnackbarMessage('Submission successful!');
             setOpenSnackbar(true);
@@ -70,7 +72,7 @@ const Amenities = () => {
   return (
     <div className="App" style={{ backgroundImage: `url(${bg3})`, backgroundSize: 'cover', backgroundPosition: 'bottom'}}>
       <header className="App-header">
-        <TopHeader color="#EDCF6B"/>
+        <TopHeader color="#87CEEB"/>
       </header>
       <div className="amenities-content-container">
         <div className="amenities-tabs">
@@ -110,7 +112,7 @@ const Amenities = () => {
           </div>
         </div>
         <div className="amenities-content">
-          <Utilities category={selectedTab} />
+          <Utilities cnt={cnt} category={selectedTab} />
           
         </div>
       </div>
@@ -122,7 +124,7 @@ const Amenities = () => {
               <span className="sell-popup-close" onClick={closeSellPopup}>
                   &times;
               </span>
-              <form >
+              {!registered ? <form >
                   {/* <label>
                       Roll No:
                       <input type="text" value={rollNo} onChange={(e) => setRollNo(e.target.value)} />
@@ -149,7 +151,7 @@ const Amenities = () => {
                   </label>
                   <br />
                   <button type="submit" onClick={handleFormSubmit} >Submit</button>
-              </form>
+              </form>: <div>Thank you for registering your item.</div> }
               {/* <Snackbar
       open={openSnackbar}
       autoHideDuration={6000}

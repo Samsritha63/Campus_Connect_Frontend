@@ -13,15 +13,17 @@ import bg4 from "../constants/assets/bg7.jpg"
 const Events = () => {
   const [isEventPopupOpen, setEventPopupOpen] = useState(false);
   const [events, setEvents] = useState([]);
-  const [counter, setCounter] = useState(0);
+  const [counter, setCounter] = useState(true);
   const [selectedEvent, setSelectedEvent] = useState(null); // Initialize with null
   const [selectedSubEvent, setSelectedSubEvent] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const openEventPopup = () => {
     setEventPopupOpen(true);
   };
 
   const closeEventPopup = () => {
+    // setCounter(!counter);
     setEventPopupOpen(false);
   };
 
@@ -57,12 +59,6 @@ const Events = () => {
 
         // Set the formatted data to the state
         setEvents(formattedEvents);
-
-        // Set the default selected event (e.g., "parsec 4.0") if it exists in the formatted data
-        const defaultEvent = formattedEvents.find(event => event.name === 'parsec 4.0');
-        if (defaultEvent) {
-          setSelectedEvent(defaultEvent);
-        }
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -70,7 +66,13 @@ const Events = () => {
 
     // Call the fetchData function when the component mounts
     fetchData();
+    // setSelectedEvent(events[0]);
+    // setLoading(false);
   }, [counter]);
+
+  useEffect(()=> {
+    setSelectedEvent(events[0]);
+  }, [events])
 
   const canAddEvent = JSON.parse(localStorage.getItem("userInfo"))["can_add_event"];
   const roll_num_event = JSON.parse(localStorage.getItem("userInfo"))["roll_no"];
@@ -100,7 +102,7 @@ const Events = () => {
 
       // Reload the entire page
       // window.location.reload();
-      setCounter(counter + 1);
+      setCounter(!counter);
     } catch (error) {
       console.error('Error deleting event:', error);
       // Handle error as needed
@@ -133,7 +135,7 @@ const Events = () => {
             {selectedEvent ? (
               <>
                 <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <img className="event-image" src={selectedEvent.image.replace('/view?usp=drive_link', '/preview')} alt="Cycle" style={{ width: 250, height: 200 }} />
+                  <img className="event-image" src={selectedEvent.image} alt="Cycle" style={{ width: 250, height: 200 }} />
                   <div style={{ marginLeft: "10px" }}>
                     <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                       <p style={{ fontSize: "40px" }}>{selectedEvent.name}</p>
@@ -175,7 +177,7 @@ const Events = () => {
             )}
           </div>
           {/* Event Popup */}
-          <EventPopup isOpen={isEventPopupOpen} onClose={closeEventPopup} />
+          <EventPopup counter={counter} setCounter={setCounter} isOpen={isEventPopupOpen} onClose={closeEventPopup} />
         </div>
       </div>
     </>

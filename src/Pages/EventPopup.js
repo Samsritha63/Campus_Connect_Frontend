@@ -3,7 +3,7 @@ import "./EventPopup.css";
 import axios from "axios";
 import { URL } from '../constants/actionTypes';
 
-const EventPopup = ({ isOpen, onClose }) => {
+const EventPopup = ({counter, setCounter, isOpen, onClose }) => {
     const [rollNo, setRollNo] = useState('');
     const [eventName, setEventName] = useState('');
     const [description, setDescription] = useState('');
@@ -51,6 +51,7 @@ const EventPopup = ({ isOpen, onClose }) => {
             // Check the response and handle it accordingly
             if (response.status === 200) {
                 console.log('Form data sent successfully');
+                setCounter(!counter);
                 // You can perform additional actions here if needed
             } else {
                 console.error('Error sending form data');

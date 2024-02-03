@@ -70,7 +70,7 @@ import axios from 'axios';
 import AmenitiesCard from "../components/amenitiesCard";
 import { URL } from "../constants/actionTypes";
 
-const Cycles = ({ category }) => {
+const Cycles = ({ cnt, category }) => {
   const [selectedData, setSelectedData] = useState([]);
   console.log(category)
   useEffect(() => {
@@ -89,7 +89,7 @@ const Cycles = ({ category }) => {
 
     fetchData();
 
-  }, [category]);
+  }, [category, cnt]);
 
   return (
     <div className="cycles-container" style={{ display: 'flex', justifyContent: 'space-around' }}>

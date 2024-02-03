@@ -17,7 +17,7 @@ import CouponPopup from './CouponPopup';
 import {useSelector} from "react-redux"; 
 import exportFromJSON from 'export-from-json';
 import { URL } from '../constants/actionTypes';
-import bg5 from "../constants/assets/bg9.jpg"
+import bg5 from "../constants/assets/bg7.jpg"
 
 const Mess = () => {
   const navigate = useNavigate();
@@ -131,7 +131,7 @@ const handleChange = (e) => {
   return (
     <div className="App" style={{ backgroundImage: `url(${bg5})`, backgroundSize: 'contain', backgroundPosition: 'bottom'}}>
       <header className="App-header" >
-        <TopHeader color="#74A662"/>
+        <TopHeader color="#87CEEB"/>
         <div className="add-button-container">
         {canAddCoupons && <button style={{borderRadius:"25px", fontWeight:"bold"}} onClick={downloadExcelFile}>Download Data</button>}
         </div>

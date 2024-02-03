@@ -11,8 +11,9 @@ const TopHeader = ({color}) => {
   };
 
   const activeLinkStyle = {
-    border: "2px solid #333",
-    borderRadius: "10px",
+    textDecoration: "underline",
+    textDecorationColor: "#000",  // Set underline color to black
+    textDecorationThickness: "2px",  // Set the thickness of the underline
   };
 
   const profileIconStyles = {
@@ -20,9 +21,16 @@ const TopHeader = ({color}) => {
     top: '10px',
     left: '10px',
     width: '75px',
-    height: 'auto',
+    height: '75px',
     borderRadius: '50%',
     cursor: 'pointer',
+  };
+
+  const imgStyles = {
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover', // or 'contain' based on your preference
+    borderRadius: '50%',
   };
 
   const Headerstyles = {
@@ -42,6 +50,7 @@ const TopHeader = ({color}) => {
 
   const titles={
     fontFamily: "'Pacifico', cursive",
+    paddingRight:"150px"
     // TOP
   }
   
@@ -50,7 +59,7 @@ const TopHeader = ({color}) => {
     <div className="top-header" style={Headerstyles}>
       <Link to="/home">
         <div className="profile-icon" style={profileIconStyles}>
-          <img src={ProfileIcon} alt="Profile" style={profileIconStyles} />
+          <img src={"https://s2.dmcdn.net/v/V0rET1aZ1o93N0LiT/x1080"} alt="Profile" style={imgStyles} />
         </div>
       </Link>
       <Link to="/profile">

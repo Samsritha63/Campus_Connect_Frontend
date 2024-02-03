@@ -13,7 +13,7 @@ function App() {
   return (
     <div className="App" style={{ backgroundImage: `url(${bg2})`, backgroundSize: 'contain', backgroundPosition: 'bottom' , height: '100vh'}}>
       <header className="App-header">
-        <TopHeader color="#FFBBD0"/>
+        <TopHeader color="#8F5A8E"/>
       </header>
 
       <main className="main-cards">

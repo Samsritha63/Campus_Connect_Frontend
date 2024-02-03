@@ -5,7 +5,7 @@ import TopHeader from "./TopHeader";
 import SellPopup from "./SellPopup";
 
 const Amenities = () => {
-  const [selectedTab, setSelectedTab] = useState("Cycles"); // Set "Cycles" as the default tab
+  const [selectedTab, setSelectedTab] = useState("cycles"); // Set "Cycles" as the default tab
   const [isSellPopupOpen, setSellPopupOpen] = useState(false);
 
   const openSellPopup = () => {
@@ -24,8 +24,8 @@ const Amenities = () => {
       <div className="amenities-content-container">
         <div className="amenities-tabs">
           <button
-            className={`amenities-tab ${selectedTab === "Cycles" ? "active" : "default"}`}
-            onClick={() => setSelectedTab("Cycles")}
+            className={`amenities-tab ${selectedTab === "cycles" ? "active" : "default"}`}
+            onClick={() => setSelectedTab("cycles")}
             style={{ color: "black" }}
           >
             Cycles

@@ -6,7 +6,7 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { URL } from "../constants/actionTypes";
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
-
+import { ADD_USER_INFO } from "../constants/actionTypes"
 function Login() {
     const navigate = useNavigate();
 
@@ -38,12 +38,21 @@ function Login() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(formData, "yyyyyyyyyyyyyyyy")
         try {
             const response = await axios.post(`${URL}/login`, formData);
 
             if (response.data) {
-                // Backend verification successful, navigate to the other page
+                // userInfo={
+                //     user_id: "",
+                //     name: "",
+                //     contact_no: "",
+                //     email_id: "",
+                //     roll_no: "",
+                //     can_add_event: false,
+                //     can_add_coupons: false,
+                //     password: ""
+                // }
+                // dispatch({ type: ADD_USER_INFO, payload: newOutputMessage });
                 navigate('/home');
 
             } else {

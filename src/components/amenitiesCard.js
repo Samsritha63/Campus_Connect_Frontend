@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './amenitiesCard.css';
 
-const AmenitiesCard = ({ image, price, owner }) => {
+const AmenitiesCard = ({ image, price, owner, emailid, phone_number }) => {
     const [showContact, setShowContact] = useState(false);
 
     const handleGetInTouch = () => {
@@ -19,8 +19,8 @@ const AmenitiesCard = ({ image, price, owner }) => {
                     <p>Owner: {owner}</p>
                     {showContact && (
                         <>
-                            <p>Email: example@example.com</p>
-                            <p>Phone: +1234567890</p>
+                            <p>Email: {emailid}</p>
+                            <p>Phone: {phone_number}</p>
                         </>
                     )}
                 </div>

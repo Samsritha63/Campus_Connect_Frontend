@@ -41,7 +41,12 @@ const Events = () => {
         { id: 1, name: 'Sub Event 1.1' },
         { id: 2, name: 'Sub Event 1.2' },
       ],
-    }
+    },
+    <div className="sell-button">
+      <button style={{ color: "black" }}>
+        Add Event
+      </button>
+    </div>
     // Add more events as needed
   ];
 

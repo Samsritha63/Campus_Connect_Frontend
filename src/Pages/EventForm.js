@@ -1,25 +1,23 @@
 import React, { useState } from "react";
-import "./SellPopup.css";
+import "./eventform.css";
 
-const SellPopup = ({ isOpen, onClose }) => {
+const eventform = ({ isOpen, onClose }) => {
     const [rollNo, setRollNo] = useState('');
-    const [category, setCategory] = useState('');
-    const [itemName, setItemName] = useState('');
+    const [couponName, setCouponName] = useState('');
+    const [description, setDescription] = useState('');
     const [image, setImage] = useState('');
-    const [phNum, setPhNum] = useState('');
-    const [registered, setRegistered] = useState(false);
+    const [Website, setWebsite] = useState('');
+    const [subEvent, setSubEvents] = useState(false);
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
-        // Add your registration logic here
-        // For demonstration purposes, just set 'registered' to true
         setRegistered(true);
     };
 
     return (
-        <div className={`sell-popup ${isOpen ? "open" : ""}`}>
-            <div className="sell-popup-content">
-                <span className="sell-popup-close" onClick={onClose}>
+        <div className={`eventform ${isOpen ? "open" : ""}`}>
+            <div className="eventform-popup-content">
+                <span className="eventform-popup-close" onClick={onClose}>
                     &times;
                 </span>
                 <form onSubmit={handleFormSubmit}>
@@ -29,13 +27,13 @@ const SellPopup = ({ isOpen, onClose }) => {
                     </label>
                     <br />
                     <label>
-                        Category:
-                        <input type="text" value={category} onChange={(e) => setCategory(e.target.value)} />
+                        Coupon Name:
+                        <input type="text" value={couponName} onChange={(e) => setCouponName(e.target.value)} />
                     </label>
                     <br />
                     <label>
-                        Item Name:
-                        <input type="text" value={itemName} onChange={(e) => setItemName(e.target.value)} />
+                        Description:
+                        <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
                     </label>
                     <br />
                     <label>
@@ -44,8 +42,13 @@ const SellPopup = ({ isOpen, onClose }) => {
                     </label>
                     <br />
                     <label>
-                        Phone Number:
-                        <input type="text" value={phNum} onChange={(e) => setPhNum(e.target.value)} />
+                        Website:
+                        <input type="text" value={Website} onChange={(e) => setWebsite(e.target.value)} />
+                    </label>
+                    <br />
+                    <label>
+                        Sub Events:
+                        <input type="text" value={subEvent} onChange={(e) => setPhNum(e.target.value)} />
                     </label>
                     <br />
                     <button type="submit">Submit</button>

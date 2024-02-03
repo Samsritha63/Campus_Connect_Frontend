@@ -13,7 +13,7 @@ const Amenities = () => {
   };
 
   const closeSellPopup = () => {
-    setSellPopupOpen(false);
+    setSellPopupOpen(false); 
   };
 
   return (
@@ -32,28 +32,28 @@ const Amenities = () => {
           </button>
           <button
             className={`amenities-tab ${selectedTab === "Mattresses" ? "active" : ""}`}
-            onClick={() => setSelectedTab("Mattresses")}
+            onClick={() => setSelectedTab("mattresses")}
             style={{ color: "black" }}
           >
             Mattresses
           </button>
           <button
             className={`amenities-tab ${selectedTab === "Electronics" ? "active" : ""}`}
-            onClick={() => setSelectedTab("Electronics")}
+            onClick={() => setSelectedTab("electronics")}
             style={{ color: "black" }}
           >
             Electronics
           </button>
           <button
             className={`amenities-tab ${selectedTab === "Others" ? "active" : ""}`}
-            onClick={() => setSelectedTab("Others")}
+            onClick={() => setSelectedTab("others")}
             style={{ color: "black" }}
           >
             Others
           </button>
 
           <div className="sell-button">
-            <button onClick={openSellPopup} style={{ color: "black" }}>
+            <button onClick={openSellPopup} style={{ color: "white", borderRadius: "25px", fontWeight: "bold" }}>
               SELL
             </button>
           </div>

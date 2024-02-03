@@ -1,23 +1,26 @@
 import React, { useState } from "react";
-import "./eventform.css";
+import "./EventForm.css";
 
-const eventform = ({ isOpen, onClose }) => {
+const EventForm = ({ isOpen, onClose }) => {
     const [rollNo, setRollNo] = useState('');
     const [couponName, setCouponName] = useState('');
     const [description, setDescription] = useState('');
     const [image, setImage] = useState('');
     const [Website, setWebsite] = useState('');
     const [subEvent, setSubEvents] = useState(false);
+    const [registered, setRegistered] = useState(false);
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
+        // Add your registration logic here
+        // For demonstration purposes, just set 'registered' to true
         setRegistered(true);
     };
 
     return (
         <div className={`eventform ${isOpen ? "open" : ""}`}>
-            <div className="eventform-popup-content">
-                <span className="eventform-popup-close" onClick={onClose}>
+            <div className="eventform-content">
+                <span className="eventform-close" onClick={onClose}>
                     &times;
                 </span>
                 <form onSubmit={handleFormSubmit}>
@@ -48,7 +51,7 @@ const eventform = ({ isOpen, onClose }) => {
                     <br />
                     <label>
                         Sub Events:
-                        <input type="text" value={subEvent} onChange={(e) => setPhNum(e.target.value)} />
+                        <input type="text" value={subEvent} onChange={(e) => setSubEvents(e.target.value)} />
                     </label>
                     <br />
                     <button type="submit">Submit</button>
@@ -58,4 +61,4 @@ const eventform = ({ isOpen, onClose }) => {
     );
 };
 
-export default SellPopup;
+export default EventForm;

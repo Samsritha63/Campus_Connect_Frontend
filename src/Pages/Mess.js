@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
-
+import axios from 'axios'
 // import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import '../App.css';
 import TopHeader from './TopHeader';
@@ -16,6 +16,19 @@ import SpecialD from "../constants/assets/specialDinner.jpg";
 
 const Mess = () => {
   const navigate = useNavigate();
+
+  const [formData, setFormData] = useState({
+    roll_number: '',
+    category: '',
+});
+
+const handleChange = (e) => {
+  setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+  });
+};
+
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
   const [snackbarSeverity, setSnackbarSeverity] = useState('success'); // or 'error' for failure
@@ -26,18 +39,18 @@ const Mess = () => {
 
   const handleBuyClick = async () => {
     try {
+      console.log("yo entered try block");
       // Connect to the backend endpoint
-      const response = await fetch('/buyCoupons', {
-        method: 'POST',
-        // You may need to add headers or send data depending on your backend requirements
-      });
-
+      const response = await axios.post(`${URL}/buyCoupons`, formData);
+      console.log(response, "yyyyyyyyyyyyyy");
       if (response.ok) {
         // Coupon sold successfully
+        console.log(response, "yyyyyyyyyyyyyy if ififififif");
         setSnackbarMessage('Coupon Sold Successfully');
         setSnackbarSeverity('success');
         setSnackbarOpen(true);
       } else {
+        console.log(response, "yyyyyyyyyyyyyy if elselse");
         // Purchase unsuccessful
         setSnackbarMessage('Purchase Unsuccessful');
         setSnackbarSeverity('error');

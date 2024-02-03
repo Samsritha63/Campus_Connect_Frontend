@@ -1,4 +1,4 @@
-import { ADD_USER_INFO } from "../constants/actionTypes";
+import { ADD_USER_INFO, GET_USER_INFO } from "../constants/actionTypes";
 const initialState = {
     user_id: "",
     name: "",

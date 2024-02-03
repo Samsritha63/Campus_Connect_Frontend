@@ -4,6 +4,7 @@ import { Container, Paper, Typography, Grid } from '@mui/material';
 import TopHeader from './TopHeader';
 import '../App.css';
 import { useNavigate } from 'react-router-dom';
+import {useSelector} from "react-redux"; 
 // import { makeStyles } from '@mui/styles';
 
 // const useStyles = makeStyles((theme) => ({
@@ -25,14 +26,13 @@ import { useNavigate } from 'react-router-dom';
 const Profile = () => {
 
     const navigate = useNavigate();
-
     const student = {
-        name: 'John Doe',
-        contactNumber: '123-456-7890',
-        email: 'john.doe@gmail.com',
-        rollNo: 'A123456',
-        events: true,
-        coupons: false,
+        name: useSelector((state) => state.userHandler.name),
+        contactNumber: useSelector((state) => state.userHandler.contact_no),
+        email: useSelector((state) => state.userHandler.email_id),
+        rollNo: useSelector((state) => state.userHandler.roll_no),
+        events: useSelector((state) => state.userHandler.can_add_event),
+        coupons: useSelector((state) => state.userHandler.can_add_coupons),
     };
 
     const handleLogout = () => {

@@ -10,10 +10,12 @@ import Events from './Pages/Events';
 import Mess from './Pages/Mess';
 import Profile from './Pages/Profile';
 import Login from './Pages/Login';
-
+import store from './store';
+import { Provider } from 'react-redux';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+  <Provider store={store}>
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
@@ -26,6 +28,7 @@ root.render(
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
+  </Provider>
 );
 
 reportWebVitals();

@@ -7,9 +7,10 @@ import { URL } from "../constants/actionTypes";
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import { ADD_USER_INFO } from "../constants/actionTypes"
+import { useDispatch } from "react-redux";
 function Login() {
     const navigate = useNavigate();
-
+    const dispatch = useDispatch();
     const [formData, setFormData] = useState({
         roll_number: '',
         password: '',
@@ -40,19 +41,29 @@ function Login() {
         e.preventDefault();
         try {
             const response = await axios.post(`${URL}/login`, formData);
-
+            console.log(response)
             if (response.data) {
-                // userInfo={
-                //     user_id: "",
-                //     name: "",
-                //     contact_no: "",
-                //     email_id: "",
-                //     roll_no: "",
-                //     can_add_event: false,
-                //     can_add_coupons: false,
-                //     password: ""
-                // }
-                // dispatch({ type: ADD_USER_INFO, payload: newOutputMessage });
+                // {
+                //     "name": "John Doe",
+                //     "email_id": "200030010@iitdh.ac.in",
+                //     "can_add_event": true,
+                //     "password": "password123",
+                //     "roll_no": "200030010",
+                //     "user_id": "1",
+                //     "contact_no": "1234567890",
+                //     "can_add_coupons": false
+                //   }
+                const userInfo={
+                    user_id: response.data.user_id,
+                    name: response.data.name,
+                    contact_no: response.data.contact_no,
+                    email_id: response.data.email_id,
+                    roll_no: response.data.roll_no,
+                    can_add_event: response.data.can_add_event,
+                    can_add_coupons: response.data.can_add_coupons,
+                    password: response.data.password
+                }
+                dispatch({ type: ADD_USER_INFO, payload: userInfo });
                 navigate('/home');
 
             } else {

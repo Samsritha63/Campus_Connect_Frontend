@@ -3,6 +3,7 @@ import './events.css';
 import event1 from '../constants/assets/OIP.jpeg';
 import TopHeader from './TopHeader';
 import RegistrationPopup from '../components/RegistrationPopup';
+import eventform from './EventForm';
 
 const Events = () => {
 
@@ -42,12 +43,11 @@ const Events = () => {
         { id: 2, name: 'Sub Event 1.2' },
       ],
     },
-    <div className="sell-button">
-      <button style={{ color: "black" }}>
-        Add Event
-      </button>
-    </div>
-    // Add more events as needed
+    <div className="event-button">
+    <button onClick={eventform} style={{ color: "white", borderRadius: "25px", fontWeight: "bold" }}>
+      ADD EVENT
+    </button>
+  </div>
   ];
 
   const [selectedEvent, setSelectedEvent] = useState(events[0]);

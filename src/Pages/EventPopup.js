@@ -1,21 +1,72 @@
 import React, { useState } from "react";
 import "./EventPopup.css";
+import axios from "axios";
+import { URL } from '../constants/actionTypes';
 
 const EventPopup = ({ isOpen, onClose }) => {
     const [rollNo, setRollNo] = useState('');
-    const [couponName, setCouponName] = useState('');
+    const [eventName, setEventName] = useState('');
     const [description, setDescription] = useState('');
     const [image, setImage] = useState('');
     const [Website, setWebsite] = useState('');
     const [subEvents, setSubEvents] = useState([]);
+    const [events, setevents] = useState([]);
+    const [registrationlink, setregistrationlink]= useState([]);
     const [registered, setRegistered] = useState(false);
+    // const URL = "http://10.200.230.209:5000";
 
-    const handleFormSubmit = (e) => {
+    const handleFormSubmit = async (e) => {
         e.preventDefault();
-        // Add your registration logic here
-        // For demonstration purposes, just set 'registered' to true
+        
+        try {
+
+            const extractedEvents = subEvents.map((subEvent) => subEvent.name);
+            const extractedRegistrationLinks = subEvents.map((subEvent) => subEvent.registrationLink);
+
+            // console.log("Form data:", {
+            //     "roll_number": rollNo,
+            //     "name": eventName,
+            //     "description": description,
+            //     "image":image,
+            //     "website_link": Website,
+            //     "sub_events": {
+            //         "names":extractedEvents,
+            //         "registrationLinks": extractedRegistrationLinks
+            //     }
+            // });
+
+            // Make an HTTP POST request to your endpoint
+            const response = await axios.post(`${URL}/events`, {
+                "roll_number": rollNo,
+                "name": eventName,
+                "description": description,
+                "image":image,
+                "website_link": Website,
+                "sub_events": {
+                    "names":extractedEvents,
+                    "registrationLinks": extractedRegistrationLinks
+                }
+            });
+
+            // Check the response and handle it accordingly
+            if (response.status === 200) {
+                console.log('Form data sent successfully');
+                // You can perform additional actions here if needed
+            } else {
+                console.error('Error sending form data');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
         setRegistered(true);
     };
+
+    // const handleFormSubmit = (e) => {
+    //     e.preventDefault();
+    //     // Add your registration logic here
+    //     // For demonstration purposes, just set 'registered' to true
+    //     setRegistered(true);
+    // };
 
     const handleAddSubEvent = () => {
         setSubEvents([...subEvents, { name: '', registrationLink: '' }]);
@@ -33,15 +84,15 @@ const EventPopup = ({ isOpen, onClose }) => {
                 <span className="eventform-close" onClick={onClose}>
                     &times;
                 </span>
-                <form onSubmit={handleFormSubmit}>
+                {!registered ? <form onSubmit={handleFormSubmit}>
                     <label>
                         Roll No:
                         <input type="text" value={rollNo} onChange={(e) => setRollNo(e.target.value)} />
                     </label>
                     <br />
                     <label>
-                        Coupon Name:
-                        <input type="text" value={couponName} onChange={(e) => setCouponName(e.target.value)} />
+                        Event Name:
+                        <input type="text" value={eventName} onChange={(e) => setEventName(e.target.value)} />
                     </label>
                     <br />
                     <label>
@@ -60,11 +111,11 @@ const EventPopup = ({ isOpen, onClose }) => {
                     </label>
                     <br />
                     <label>
-                        Sub Events:
+                        {/* Sub Events: */}
                         {subEvents.map((subEvent, index) => (
-                            <div key={index}>
+                            <div style={{marginTop:"20px"}} key={index}>
                                 <label>
-                                    Sub Event Name:
+                                    Sub Event {index + 1}:
                                     <input
                                         type="text"
                                         value={subEvent.name}
@@ -81,13 +132,15 @@ const EventPopup = ({ isOpen, onClose }) => {
                                 </label>
                             </div>
                         ))}
-                        <button type="button" onClick={handleAddSubEvent}>
+                        <button style={{marginTop:"20px"}} type="button" onClick={handleAddSubEvent}>
                             Add Sub Event
                         </button>
                     </label>
                     <br />
                     <button type="submit">Submit</button>
-                </form>
+                </form>: (<div>
+                    Added Sucessfully!!
+                </div>)}
             </div>
         </div>
     );

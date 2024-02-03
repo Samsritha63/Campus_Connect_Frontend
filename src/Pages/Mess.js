@@ -76,7 +76,7 @@ const handleChange = (e) => {
       const response = await axios.post(`${URL}/buyCoupons`, requestData);
   
       console.log(response, "Response");
-  
+      
       if (response.status === 200) {
         // Coupon sold successfully
         console.log("Successful purchase");
@@ -104,7 +104,10 @@ const handleChange = (e) => {
       <header className="App-header">
         <TopHeader />
         <div className="add-button-container">
-          <button onClick={openEventPopup}>ADD COUPON</button>
+          <button onClick={openEventPopup} style={{borderRadius: '25px'}}>ADD COUPON</button>
+        </div>
+        <div className="del-button-container">
+          <button style={{borderRadius: '25px', background: 'red'}}>DELETE COUPON</button>
         </div>
       </header>
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import ProfileIcon from '../constants/assets/logo.jpg';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 const TopHeader = () => {
   const profileIconStyles = {
@@ -55,12 +56,17 @@ const TopHeader = () => {
       <div className="profile-icon" style={profileIconStyles}>
         <img src={ProfileIcon} alt="Profile" style={profileIconStyles} />
       </div>
-      <div className="extra-profile-icon" style={extraProfileIconStyles}>
-        <i className="fa fa-user" aria-hidden="true"></i>
-      </div>
+      <Link to="/profile">
+        <div className="extra-profile-icon" style={extraProfileIconStyles}>
+          <i className="fa fa-user" aria-hidden="true"></i>
+        </div>
+      </Link>
+      {/* <Link to="/" exact render={() => <StudentDetails />} /> */}
+      {/* <Route path="/profile" component={Profile} /> */}
       <div className="search-bar" style={searchBarStyles}>
         <input type="text" placeholder="        Search..." style={{ width: '100%', height: '75%', borderRadius: '25px' }} />
       </div>
+
       <div style={textStyle}>
         IITDh
       </div>

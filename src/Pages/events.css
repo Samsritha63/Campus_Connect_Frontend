@@ -1,3 +1,31 @@
+.popup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+}
+
+.popup-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 20px;
+  color: #333;
+}
 
 body {
   margin: 0;
@@ -8,11 +36,12 @@ body {
 .event-page {
     display: flex;
     overflow-y: hidden;
+    margin-top: 120px; 
   }
   
   .event-sidebar {
     width: 20%;
-    height: 94vh;
+    height: 77vh;
     padding: 20px;
     background-color: #f0f0f0;
     border-right: 1px solid #ccc;
@@ -49,11 +78,12 @@ body {
   .event-details {
     flex: 1;
     padding: 20px;
-    height: 94vh;
+    height: 77vh;
+    /* margin-top: 50px; */
     overflow-y: auto;
     /* overflow: scroll; */
-    overflow-y: auto;
-    display: flex;
+    /* overflow-y: auto; */
+    /* display: flex; */
     flex-direction: column;
     justify-content: center;
   }

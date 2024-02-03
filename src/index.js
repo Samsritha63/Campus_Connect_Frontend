@@ -9,6 +9,7 @@ import Amenities from './Pages/Amenities';
 import Events from './Pages/Events';
 import Cycles from './Pages/Cycles';
 import Mess from './Pages/Mess';
+import Profile from './Pages/Profile';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -21,12 +22,10 @@ root.render(
         <Route path="events" element={<Events />} />
         <Route path="cycles" element={<Cycles />} />
         <Route path="mess" element={<Mess />} />
+        <Route path="profile" element={<Profile />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();

@@ -9,7 +9,7 @@ import snacks from "../constants/assets/snacks.jpg";
 import Dinner from "../constants/assets/Dinner.jpg";
 import nonveg from "../constants/assets/nonveg.jpg";
 import SpecialD from "../constants/assets/specialDinner.jpg";
-const Mess=() => {
+const Mess = () => {
   return (
     <div className="App">
       <header className="App-header">
@@ -24,6 +24,9 @@ const Mess=() => {
           <Card title="Dinner" imageSrc={Dinner} />
           <Card title="Non-Veg" imageSrc={nonveg} />
           <Card title="Special Dinner" imageSrc={SpecialD} />
+          <Card title="Name1" imageSrc={SpecialD} />
+          <Card title="Name2" imageSrc={SpecialD} />
+          <Card title="Name3" imageSrc={SpecialD} />
         </div>
       </main>
     </div>

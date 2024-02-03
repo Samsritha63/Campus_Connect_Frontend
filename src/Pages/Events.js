@@ -18,8 +18,8 @@ const Events = () => {
         { id: 3, name: 'Sub Event 1.3' },
         { id: 4, name: 'Sub Event 1.4' },
         { id: 5, name: 'Sub Event 1.5' },
-        { id: 6, name: 'Sub Event 1.5' },
-        { id: 7, name: 'Sub Event 1.5' },
+        { id: 6, name: 'Sub Event 1.6' },
+        { id: 7, name: 'Sub Event 1.7' },
       ],
     },
     {

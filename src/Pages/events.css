@@ -10,6 +10,10 @@
   background: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
 }
 
+.event-image {
+  width: 50%;
+}
+
 .popup-content {
   background: #fff;
   padding: 20px;
@@ -89,7 +93,7 @@ p {
 .event-page {
     display: flex;
     overflow-y: hidden;
-    margin-top: 120px; 
+    /* margin-top: 120px;  */
   }
   
   .event-sidebar {

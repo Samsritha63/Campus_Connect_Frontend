@@ -6,20 +6,21 @@ import TopHeader from './TopHeader';
 import amenities from "../constants/assets/amenities.jpg";
 import Event from "../constants/assets/Event.jpg";
 import coupons from "../constants/assets/coupons.jpg";
+import bg2 from "../constants/assets/bg2.jpg"
 // import Mess from './Mess';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App" style={{ backgroundImage: `url(${bg2})`, backgroundSize: 'contain', backgroundPosition: 'bottom'}}>
       <header className="App-header">
-        <TopHeader />
+        <TopHeader color="#FFBBD0"/>
       </header>
 
       <main className="main-cards">
         <Link to="/Amenities">
           <Card
-            title="Amenities"
-            content="Explore our top-notch amenities."
+            title=""
+            content="Is this a Fish Market? It might just as well be!"
             imageSrc={amenities}
           />
         </Link>
@@ -44,7 +45,7 @@ function App() {
 
 function Card({ title, content, imageSrc }) {
   return (
-    <div className="card">
+    <div style={{backgroundColor:'#fff'}} className="card">
       <div className="card-content">
         <img src={imageSrc} alt={title} />
         <h2 style={{ color: 'black' }}>{title}</h2>

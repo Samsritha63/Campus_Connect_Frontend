@@ -19,7 +19,7 @@ const Amenities = () => {
   return (
     <div className="amenities-container">
       <header className="App-header">
-        <TopHeader />
+        <TopHeader color="#FFBBD0"/>
       </header>
       <div className="amenities-content-container">
         <div className="amenities-tabs">
@@ -46,7 +46,7 @@ const Amenities = () => {
           </button>
           <button
             className={`amenities-tab ${selectedTab === "Others" ? "active" : ""}`}
-            onClick={() => setSelectedTab("others")}
+            onClick={() => setSelectedTab("Others")}
             style={{ color: "black" }}
           >
             Others

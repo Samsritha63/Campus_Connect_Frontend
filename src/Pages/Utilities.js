@@ -78,31 +78,36 @@ const Cycles = ({ category }) => {
       try {
         const response = await axios.post(`${URL}/getItems`, { 'category': category });
         const data = response.data;
+        console.log(data, "yyyyyyyy")
 
         // Filter the data based on the selected category
-        const filteredData = data.filter(item => item.category.toLowerCase() === category.toLowerCase());
-
-        setSelectedData(filteredData);
+        // const filteredData = data.filter(item => item.category.toLowerCase() === category.toLowerCase());
+        setSelectedData(data);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
     };
 
     fetchData();
-    console.log(selectedData, "yyyyyyyy")
+
   }, [category]);
 
   return (
     <div className="cycles-container" style={{ display: 'flex', justifyContent: 'space-around' }}>
-      {/* {selectedData.map((item, index) => (
-        // <AmenitiesCard
-        //   key={index}
-        //   image={item.images}  // Assuming your API returns "images" field for the image URL
-        //   price={item.cost}    // Assuming your API returns "cost" field for the item price
-        //   owner={item.roll_no} // Assuming your API returns "roll_no" field for the owner
-        //   // Add other necessary fields accordingly
-        // />
-      ))} */}
+      {selectedData.map((item, index) => (
+        <AmenitiesCard
+          key={item.unique_good_number}
+          image={item.images}  // Assuming your API returns "images" field for the image URL
+          price={item.cost}    // Assuming your API returns "cost" field for the item price
+          owner={item.name}
+          email_id={item.email_id}
+          contact_no = {item.contact_no}
+          good_number = {item.unique_good_number}
+          roll_no = {item.roll_no}
+           // Assuming your API returns "roll_no" field for the owner
+          // Add other necessary fields accordingly
+        />
+      ))}
     </div>
   );
 };

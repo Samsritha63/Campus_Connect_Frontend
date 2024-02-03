@@ -44,7 +44,7 @@ const Profile = () => {
     return (
         <Container maxWidth="sm" className="container">
             <header className="App-header">
-                <TopHeader />
+                <TopHeader color="#FFBBD0"/>
             </header>
             <Paper elevation={3} style={{ padding: '20px', margin: '20px', marginTop: '140px' }}>
                 <Typography variant="h4" gutterBottom>

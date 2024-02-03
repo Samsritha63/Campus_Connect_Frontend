@@ -14,6 +14,7 @@ import Dinner from "../constants/assets/Dinner.jpg";
 import nonveg from "../constants/assets/nonveg.jpg";
 import SpecialD from "../constants/assets/specialDinner.jpg";
 import CouponPopup from './CouponPopup';
+import {useSelector} from "react-redux"; 
 import { URL } from '../constants/actionTypes';
 
 const Mess = () => {
@@ -50,18 +51,43 @@ const handleChange = (e) => {
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
   const [snackbarSeverity, setSnackbarSeverity] = useState('success'); // or 'error' for failure
+  const rollNo =  useSelector((state) => state.userHandler.roll_no);
 
   const handleSnackbarClose = () => {
     setSnackbarOpen(false);
   };
 
+  const downloadExcelFile = async () => {
+    try {
+      axios
+        .post(`${URL}/getCSV`, {
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE",
+            "Access-Control-Allow-Headers": "Content-Type",
+          },
+          responseType: 'blob',
+        })
+        .then((response) => {
+          const url = window.URL.createObjectURL(new Blob([response.data]));
+          const link = document.createElement('a');
+          link.href = url;
+          link.setAttribute('download', `analytics.xlsx`);
+          document.body.appendChild(link);
+          link.click();
+        });
+    } catch (error) {
+      console.error("Error downloading the excel file in the backend:", error);
+    }
+  };
+
   const handleBuyClick = async (category) => {
     // Assuming you have a roll number available, replace 'yourRollNumber' with the actual roll number
-    const rollNumber = 'yourRollNumber';
   
     // Update formData with roll number and category
     const requestData = {
-      roll_no: rollNumber,
+      roll_no: rollNo,
       category: category,
     };
   
@@ -102,7 +128,7 @@ const handleChange = (e) => {
   return (
     <div className="App">
       <header className="App-header">
-        <TopHeader />
+        <TopHeader color="#FFBBD0"/>
         <div className="add-button-container">
           <button onClick={openEventPopup} style={{borderRadius: '25px'}}>ADD COUPON</button>
         </div>
@@ -113,6 +139,7 @@ const handleChange = (e) => {
 
       <main className="main-cards-mess">
         <div className="cards-container">
+          <a onClick={()=>downloadExcelFile()}>hiii frds</a>
           <Card title="Breakfast" imageSrc={breakfast} onBuyClick={() => handleBuyClick("Breakfast")} />
           <Card title="Lunch" imageSrc={lunch} onBuyClick={() => handleBuyClick("Lunch")}/>
           <Card title="Snacks" imageSrc={snacks} onBuyClick={() => handleBuyClick("Snacks")}/>

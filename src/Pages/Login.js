@@ -8,6 +8,8 @@ import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import { ADD_USER_INFO } from "../constants/actionTypes"
 import { useDispatch } from "react-redux";
+import bg1 from "../constants/assets/bg1.jpg";
+
 function Login() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -79,7 +81,7 @@ function Login() {
     };
 
     return (
-        <div className="login-container">
+        <div className="login-container" style={{ backgroundImage: `url(${bg1})`, backgroundSize: 'cover', backgroundPosition: 'bottom'}}>
             <form onSubmit={handleSubmit} className="login-form">
                 <h1>Login</h1>
 
@@ -117,7 +119,7 @@ function Login() {
                     </div>
                 </div>
 
-                <button type="submit">Login</button>
+                <button type="submit" style={{borderRadius: '25px', backgroundColor: 'lightpink', fontWeight:'bold', color:'white'}}>Login</button>
             </form>
             <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={handleSnackbarClose}>
                 <MuiAlert elevation={6} variant="filled" severity={snackbarSeverity} onClose={handleSnackbarClose}>

@@ -1,4 +1,4 @@
-// src/App.js
+// src/Mess.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Snackbar from '@mui/material/Snackbar';
@@ -13,9 +13,27 @@ import snacks from "../constants/assets/snacks.jpg";
 import Dinner from "../constants/assets/Dinner.jpg";
 import nonveg from "../constants/assets/nonveg.jpg";
 import SpecialD from "../constants/assets/specialDinner.jpg";
+import CouponPopup from './CouponPopup';
+import { URL } from '../constants/actionTypes';
 
 const Mess = () => {
   const navigate = useNavigate();
+
+  const [isPopupOpen, setPopupOpen] = useState(false);
+
+  const handlePopupClose = () => {
+    setPopupOpen(false);
+  };
+
+  const [isEventPopupOpen, setEventPopupOpen] = useState(false);
+
+  const openEventPopup = () => {
+    setEventPopupOpen(true);
+  };
+
+  const closeEventPopup = () => {
+    setEventPopupOpen(false); 
+  };
 
   const [formData, setFormData] = useState({
     roll_number: '',
@@ -37,20 +55,36 @@ const handleChange = (e) => {
     setSnackbarOpen(false);
   };
 
-  const handleBuyClick = async () => {
+  const handleBuyClick = async (category) => {
+    // Assuming you have a roll number available, replace 'yourRollNumber' with the actual roll number
+    const rollNumber = 'yourRollNumber';
+  
+    // Update formData with roll number and category
+    const requestData = {
+      roll_no: rollNumber,
+      category: category,
+    };
+  
+    // Open the popup
+    // setPopupOpen(true);
+  
     try {
-      console.log("yo entered try block");
+      console.log("Entered try block");
+      console.log(requestData, "this is going to db");
+      
       // Connect to the backend endpoint
-      const response = await axios.post(`${URL}/buyCoupons`, formData);
-      console.log(response, "yyyyyyyyyyyyyy");
-      if (response.ok) {
+      const response = await axios.post(`${URL}/buyCoupons`, requestData);
+  
+      console.log(response, "Response");
+  
+      if (response.status === 200) {
         // Coupon sold successfully
-        console.log(response, "yyyyyyyyyyyyyy if ififififif");
+        console.log("Successful purchase");
         setSnackbarMessage('Coupon Sold Successfully');
         setSnackbarSeverity('success');
         setSnackbarOpen(true);
       } else {
-        console.log(response, "yyyyyyyyyyyyyy if elselse");
+        console.log("Unsuccessful purchase");
         // Purchase unsuccessful
         setSnackbarMessage('Purchase Unsuccessful');
         setSnackbarSeverity('error');
@@ -59,6 +93,9 @@ const handleChange = (e) => {
     } catch (error) {
       console.error('Error during purchase:', error);
       // Handle other errors if needed
+      setSnackbarMessage('Purchase Unsuccessful');
+      setSnackbarSeverity('error');
+      setSnackbarOpen(true);
     }
   };
 
@@ -67,21 +104,21 @@ const handleChange = (e) => {
       <header className="App-header">
         <TopHeader />
         <div className="add-button-container">
-          <button className="add-button">+</button>
+          <button onClick={openEventPopup}>ADD COUPON</button>
         </div>
       </header>
 
       <main className="main-cards-mess">
         <div className="cards-container">
-          <Card title="Breakfast" imageSrc={breakfast} onBuyClick={handleBuyClick} />
-          <Card title="Lunch" imageSrc={lunch} onBuyClick={handleBuyClick} />
-          <Card title="Snacks" imageSrc={snacks} onBuyClick={handleBuyClick} />
-          <Card title="Dinner" imageSrc={Dinner} onBuyClick={handleBuyClick} />
-          <Card title="Non-Veg" imageSrc={nonveg} onBuyClick={handleBuyClick} />
-          <Card title="Special Dinner" imageSrc={SpecialD} onBuyClick={handleBuyClick} />
-          <Card title="Name1" imageSrc={SpecialD} onBuyClick={handleBuyClick} />
-          <Card title="Name2" imageSrc={SpecialD} onBuyClick={handleBuyClick} />
-          <Card title="Name3" imageSrc={SpecialD} onBuyClick={handleBuyClick} />
+          <Card title="Breakfast" imageSrc={breakfast} onBuyClick={() => handleBuyClick("Breakfast")} />
+          <Card title="Lunch" imageSrc={lunch} onBuyClick={() => handleBuyClick("Lunch")}/>
+          <Card title="Snacks" imageSrc={snacks} onBuyClick={() => handleBuyClick("Snacks")}/>
+          <Card title="Dinner" imageSrc={Dinner} onBuyClick={() => handleBuyClick("Dinner")}/>
+          <Card title="Non-Veg" imageSrc={nonveg} onBuyClick={() => handleBuyClick("Non-Veg")}/>
+          <Card title="Special Dinner" imageSrc={SpecialD} onBuyClick={() => handleBuyClick("Special Dinner")}/>
+          <Card title="Name1" imageSrc={SpecialD} onBuyClick={() => handleBuyClick("Name1")}/>
+          <Card title="Name2" imageSrc={SpecialD} onBuyClick={() => handleBuyClick("Name2")}/>
+          <Card title="Name3" imageSrc={SpecialD} onBuyClick={() => handleBuyClick("Name3")}/>
         </div>
       </main>
       <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={handleSnackbarClose}>
@@ -89,11 +126,27 @@ const handleChange = (e) => {
           {snackbarMessage}
         </MuiAlert>
       </Snackbar>
+      {isPopupOpen && (
+        <Popup onClose={handlePopupClose} />
+      )}
+            <CouponPopup isOpen={isEventPopupOpen} onClose={closeEventPopup} />
+
     </div>
   );
 }
 
-function Card({ title, onBuyClick, imageSrc }) {
+function Popup({ onClose }) {
+  return (
+    <div className="popup-container">
+      <div className="popup">
+        <span className="popup-close" onClick={onClose}>&times;</span>
+        <p>Coupon Bought Successfully!</p>
+      </div>
+    </div>
+  );
+}
+
+function Card({ title, imageSrc, onBuyClick }) {
   return (
     <div className="card-mess">
       <div className="card-mess-content">

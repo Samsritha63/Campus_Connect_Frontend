@@ -3,9 +3,18 @@ import './events.css';
 import event1 from '../constants/assets/OIP.jpeg';
 import TopHeader from './TopHeader';
 import RegistrationPopup from '../components/RegistrationPopup';
-import eventform from './EventForm';
+import EventPopup from './EventPopup';
 
 const Events = () => {
+  const [isEventPopupOpen, setEventPopupOpen] = useState(false);
+
+  const openEventPopup = () => {
+    setEventPopupOpen(true);
+  };
+
+  const closeEventPopup = () => {
+    setEventPopupOpen(false); 
+  };
 
   const events = [
     {
@@ -43,11 +52,7 @@ const Events = () => {
         { id: 2, name: 'Sub Event 1.2' },
       ],
     },
-    <div className="event-button">
-    <button onClick={eventform} style={{ color: "white", borderRadius: "25px", fontWeight: "bold" }}>
-      ADD EVENT
-    </button>
-  </div>
+
   ];
 
   const [selectedEvent, setSelectedEvent] = useState(events[0]);
@@ -82,6 +87,11 @@ const Events = () => {
                 {event.name}
               </li>
             ))}
+                <div className="event-button">
+    <button onClick={openEventPopup} style={{ color: "white", borderRadius: "25px", fontWeight: "bold" }}>
+      ADD EVENT
+    </button>
+  </div>
           </ul>
         </div>
         <div className="event-details">
@@ -123,6 +133,8 @@ const Events = () => {
             <p>Select an event from the sidebar to view details.</p>
           )}
         </div>
+              {/* Event Popup */}
+      <EventPopup isOpen={isEventPopupOpen} onClose={closeEventPopup} />
       </div>
     </>
   );

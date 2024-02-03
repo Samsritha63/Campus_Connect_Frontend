@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import "./EventForm.css";
+import "./EventPopup.css";
 
-const EventForm = ({ isOpen, onClose }) => {
+const EventPopup = ({ isOpen, onClose }) => {
     const [rollNo, setRollNo] = useState('');
     const [couponName, setCouponName] = useState('');
     const [description, setDescription] = useState('');
     const [image, setImage] = useState('');
     const [Website, setWebsite] = useState('');
-    const [subEvent, setSubEvents] = useState(false);
+    const [subEvents, setSubEvents] = useState([]);
     const [registered, setRegistered] = useState(false);
 
     const handleFormSubmit = (e) => {
@@ -15,6 +15,16 @@ const EventForm = ({ isOpen, onClose }) => {
         // Add your registration logic here
         // For demonstration purposes, just set 'registered' to true
         setRegistered(true);
+    };
+
+    const handleAddSubEvent = () => {
+        setSubEvents([...subEvents, { name: '', registrationLink: '' }]);
+    };
+
+    const handleSubEventChange = (index, key, value) => {
+        const updatedSubEvents = [...subEvents];
+        updatedSubEvents[index][key] = value;
+        setSubEvents(updatedSubEvents);
     };
 
     return (
@@ -51,7 +61,29 @@ const EventForm = ({ isOpen, onClose }) => {
                     <br />
                     <label>
                         Sub Events:
-                        <input type="text" value={subEvent} onChange={(e) => setSubEvents(e.target.value)} />
+                        {subEvents.map((subEvent, index) => (
+                            <div key={index}>
+                                <label>
+                                    Sub Event Name:
+                                    <input
+                                        type="text"
+                                        value={subEvent.name}
+                                        onChange={(e) => handleSubEventChange(index, 'name', e.target.value)}
+                                    />
+                                </label>
+                                <label>
+                                    Registration Link:
+                                    <input
+                                        type="text"
+                                        value={subEvent.registrationLink}
+                                        onChange={(e) => handleSubEventChange(index, 'registrationLink', e.target.value)}
+                                    />
+                                </label>
+                            </div>
+                        ))}
+                        <button type="button" onClick={handleAddSubEvent}>
+                            Add Sub Event
+                        </button>
                     </label>
                     <br />
                     <button type="submit">Submit</button>
@@ -61,4 +93,4 @@ const EventForm = ({ isOpen, onClose }) => {
     );
 };
 
-export default EventForm;
+export default EventPopup;

@@ -10,6 +10,7 @@ const TopHeader = () => {
     width: '75px',
     height: 'auto',
     borderRadius: '50%',
+    cursor: 'pointer',
   };
 
   const extraProfileIconStyles = {
@@ -53,9 +54,11 @@ const TopHeader = () => {
 
   return (
     <div className="top-header">
+      <Link to="/home">
       <div className="profile-icon" style={profileIconStyles}>
         <img src={ProfileIcon} alt="Profile" style={profileIconStyles} />
       </div>
+      </Link>
       <Link to="/profile">
         <div className="extra-profile-icon" style={extraProfileIconStyles}>
           <i className="fa fa-user" aria-hidden="true"></i>

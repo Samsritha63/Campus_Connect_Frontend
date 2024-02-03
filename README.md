@@ -31,9 +31,11 @@ Ensure that PostgreSQL is installed on your local system. Follow the installatio
 In the `./apis/config/config.yaml` file, configure the PostgreSQL information such as host, password, and username.
 
 ## Additional Notes
-Demo Video [here](https://youtu.be/oADbo3I208k)
+
 - Make sure to manage your virtual environment properly to avoid conflicts.
 - Keep the PostgreSQL installation up-to-date and configured according to your needs.
+
+Demo Video [here](https://youtu.be/oADbo3I208k)
 
 Feel free to reach out for any assistance or troubleshooting.
 

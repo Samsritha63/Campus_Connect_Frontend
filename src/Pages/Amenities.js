@@ -9,7 +9,7 @@ const Amenities = () => {
   const [selectedTab, setSelectedTab] = useState("Home");
 
   return (
-    
+
     <div className="amenities-container">
       <header className="App-header">
         <TopHeader />
@@ -17,26 +17,30 @@ const Amenities = () => {
       <div className="amenities-content-container">
         <div className="amenities-tabs">
           <button
-          className={`amenities-tab ${selectedTab === "Cycles" ? "active default" : ""}`}
-          onClick={() => setSelectedTab("Cycles")}
+            className={`amenities-tab ${selectedTab === "Cycles" ? "active default" : ""}`}
+            onClick={() => setSelectedTab("Cycles")}
+            style={{ color: "black" }}
           >
-          Cycles
+            Cycles
           </button>
           <button
             className={`amenities-tab ${selectedTab === "Mattresses" ? "active" : ""}`}
             onClick={() => setSelectedTab("Mattresses")}
+            style={{ color: "black" }}
           >
             Mattresses
           </button>
           <button
             className={`amenities-tab ${selectedTab === "Electronics" ? "active" : ""}`}
             onClick={() => setSelectedTab("Electronics")}
+            style={{ color: "black" }}
           >
             Electronics
           </button>
           <button
             className={`amenities-tab ${selectedTab === "Others" ? "active" : ""}`}
             onClick={() => setSelectedTab("Others")}
+            style={{ color: "black" }}
           >
             Others
           </button>

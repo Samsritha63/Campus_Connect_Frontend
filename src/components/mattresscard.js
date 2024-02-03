@@ -9,7 +9,7 @@ const MattressCard = ({ mattressData }) => {
             <img className="mattress-image" src={image} alt="Cycle" />
             <div className="mattress-details">
                 <div className="mattress-info">
-                    <p>Price: ${price}</p>
+                    <p>Price: ₹{price}</p>
                     <p>Owner: {owner}</p>
                 </div>
             </div>

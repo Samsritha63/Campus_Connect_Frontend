@@ -7,9 +7,9 @@ import Image3 from "../constants/assets/m3.jpg";
 
 const Mattresses = () => {
   const mattressesData = [
-    { image: Image, price: 65, owner: 'Samsritha' },
-    { image: Image2, price: 75, owner: 'sahiti' },
-    { image: Image3, price: 70, owner: 'Yagna' },
+    { image: Image, price: 900, owner: 'Samsritha' },
+    { image: Image2, price: 1300, owner: 'Sahithy' },
+    { image: Image3, price: 1200, owner: 'Yagna' },
   ];
 
   return (

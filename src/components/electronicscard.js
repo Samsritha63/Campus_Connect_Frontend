@@ -9,7 +9,7 @@ const ElectronicsCard = ({ electronicsData }) => {
             <img className="electronics-image" src={image} alt="Electronics" />
             <div className="electronics-details">
                 <div className="electronics-info">
-                    <p>Price: ${price}</p>
+                    <p>Price: ₹{price}</p>
                     <p>Owner: {owner}</p>
                 </div>
             </div>

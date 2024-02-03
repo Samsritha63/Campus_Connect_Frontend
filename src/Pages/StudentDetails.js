@@ -1,31 +1,8 @@
 // StudentDetails.js
 import React from 'react';
 import { Container, Paper, Typography, Grid } from '@mui/material';
-import TopHeader from './TopHeader';
-import '../App.css';
-import { useNavigate } from 'react-router-dom';
-// import { makeStyles } from '@mui/styles';
 
-// const useStyles = makeStyles((theme) => ({
-//     paper: {
-//         padding: '20px',
-//         margin: '20px',
-//         marginTop: '140px',
-//     },
-//     logoutButton: {
-//         marginTop: '20px',
-//         backgroundColor: theme.palette.error.main,
-//         color: theme.palette.common.white,
-//         '&:hover': {
-//             backgroundColor: theme.palette.error.dark,
-//         },
-//     },
-// }));
-
-const Profile = () => {
-
-    const navigate = useNavigate();
-
+const StudentDetails = () => {
     const student = {
         name: 'John Doe',
         contactNumber: '123-456-7890',
@@ -34,19 +11,11 @@ const Profile = () => {
         events: true,
         coupons: false,
     };
-
-    const handleLogout = () => {
-        // Perform logout actions (e.g., clear session, redirect to login page)
-        // For now, let's just navigate back to the home page
-        navigate('/');
-    };
-
     return (
-        <Container maxWidth="sm" className="container">
-            <header className="App-header">
-                <TopHeader />
-            </header>
-            <Paper elevation={3} style={{ padding: '20px', margin: '20px', marginTop: '140px' }}>
+
+        <Container maxWidth="sm">
+
+            <Paper elevation={3} style={{ padding: '20px', margin: '20px' }}>
                 <Typography variant="h4" gutterBottom>
                     Student Details
                 </Typography>
@@ -82,12 +51,9 @@ const Profile = () => {
                         </Typography>
                     </Grid>
                 </Grid>
-                <button variant="contained" color="primary" onClick={handleLogout} className="logoutButton">
-                    Logout
-                </button>
             </Paper>
-        </Container >
+        </Container>
     );
 };
 
-export default Profile;
+export default StudentDetails;

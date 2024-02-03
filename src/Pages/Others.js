@@ -7,9 +7,9 @@ import Image3 from "../constants/assets/o3.jpg";
 
 const Others = () => {
     const othersData = [
-        { image: Image, price: 65, owner: 'Samsritha' },
-        { image: Image2, price: 75, owner: 'sahiti' },
-        { image: Image3, price: 70, owner: 'Yagna' },
+        { image: Image, price: 200, owner: 'Devdatt' },
+        { image: Image2, price: 350, owner: 'Altmash' },
+        { image: Image3, price: 300, owner: 'Sangeetha' },
     ];
 
     return (

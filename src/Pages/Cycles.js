@@ -7,9 +7,9 @@ import CycleCard from "../components/cyclecard";
 
 const Cycles = () => {
   const cyclesData = [
-    { image: Image, price: 300, owner: "Sudeshna" },
-    { image: Image2, price: 150, owner: "Vinoothna" },
-    { image: Image3, price: 200, owner: "Keerthi" },
+    { image: Image, price: 10000, owner: "Sudeshna" },
+    { image: Image2, price: 6000, owner: "Vinoothna" },
+    { image: Image3, price: 3500, owner: "Keerthi" },
   ];
 
   return (

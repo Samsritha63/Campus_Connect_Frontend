@@ -2,47 +2,7 @@ import React, { useState } from 'react';
 import './events.css';
 import event1 from '../constants/assets/OIP.jpeg';
 import TopHeader from './TopHeader';
-
-const RegistrationPopup = ({ onClose, subEventName }) => {
-  const [name, setName] = useState('');
-  const [rollNo, setRollNo] = useState('');
-  const [registered, setRegistered] = useState(false);
-
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    // Add your registration logic here
-    // For demonstration purposes, just set 'registered' to true
-    setRegistered(true);
-  };
-
-  return (
-    <div className="popup">
-      <div className="popup-content">
-        <span className="close" onClick={onClose}>
-          &times;
-        </span>
-        <h2>Register for {subEventName}</h2>
-        {registered ? (
-          <p>Successfully registered!</p>
-        ) : (
-          <form onSubmit={handleFormSubmit}>
-            <label>
-              Name:
-              <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
-            </label>
-            <br />
-            <label>
-              Roll No:
-              <input type="text" value={rollNo} onChange={(e) => setRollNo(e.target.value)} />
-            </label>
-            <br />
-            <button type="submit">Submit</button>
-          </form>
-        )}
-      </div>
-    </div>
-  );
-};
+import RegistrationPopup from '../components/RegistrationPopup';
 
 const Events = () => {
 
@@ -127,9 +87,12 @@ const Events = () => {
                 <img src={selectedEvent.image} alt={selectedEvent.name}
                   style={{ width: '50%', border: '1px solid #ccc' }}
                 />
-                <h2>{selectedEvent.name}</h2>
+                <div style={{ marginLeft: "10px" }}>
+                  <p style={{ fontSize: "40px" }}>{selectedEvent.name}</p>
+                  <p>{selectedEvent.description}</p>
+                </div>
               </div>
-              <p>{selectedEvent.description}</p>
+
               {/* <h3>Sub Events</h3> */}
               <ul>
                 {selectedEvent.subEvents.map((subEvent) => (
@@ -143,7 +106,7 @@ const Events = () => {
                   </li>
                 ))}
               </ul>
-
+              <button>Visit Website</button>
               {selectedSubEvent && (
                 <RegistrationPopup
                   onClose={closeRegistrationModal}

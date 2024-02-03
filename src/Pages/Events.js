@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './events.css';
 import event1 from '../constants/assets/OIP.jpeg';
 import TopHeader from './TopHeader';
 import RegistrationPopup from '../components/RegistrationPopup';
 import EventPopup from './EventPopup';
-
+import axios from 'axios';
 const Events = () => {
   const [isEventPopupOpen, setEventPopupOpen] = useState(false);
-
+  const [eventdetails,setEventsData]=useState(null);
   const openEventPopup = () => {
     setEventPopupOpen(true);
   };
@@ -15,7 +15,19 @@ const Events = () => {
   const closeEventPopup = () => {
     setEventPopupOpen(false); 
   };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`${URL}/events`);
+        const data = response.data;
+        setEventsData(data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
 
+    fetchData();
+  }, []);
   const events = [
     {
       id: 1,
@@ -116,12 +128,12 @@ const Events = () => {
                     {selectedSubEvent && selectedSubEvent.id === subEvent.id ? (
                       'Registered'
                     ) : (
-                      <button onClick={() => handleSubEventClick(subEvent)}>Register</button>
+                      <button href={subEvent.registrationLink} onClick={() => handleSubEventClick(subEvent)}>Register</button>
                     )}
                   </li>
                 ))}
               </ul>
-              <button>Visit Website</button>
+              <button href={selectedEvent.website_link}>Visit Website</button>
               {selectedSubEvent && (
                 <RegistrationPopup
                   onClose={closeRegistrationModal}

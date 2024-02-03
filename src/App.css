@@ -272,3 +272,7 @@ opup-container {
   /* background-color: #45a049; */
 
 }
+.Header_names{
+  top: 70px;
+  gap: space-between;
+}

@@ -21,18 +21,18 @@ const TopHeader = () => {
     color: '#333', // Customize color as needed
   };
 
-  const searchBarStyles = {
-    position: 'absolute',
-    top: '40px',
-    left: '50%',
-    transform: 'translateX(-50%)',
-    width: '400px',
-    height: '60px',
-    border: 'None',
-    // border: '2px solid black',
-    borderRadius: '25px',
+  // const searchBarStyles = {
+  //   position: 'absolute',
+  //   top: '40px',
+  //   left: '50%',
+  //   transform: 'translateX(-50%)',
+  //   width: '400px',
+  //   height: '60px',
+  //   border: 'None',
+  //   // border: '2px solid black',
+  //   borderRadius: '25px',
 
-  };
+  // };
 
   const lineStyle = {
     position: 'absolute',
@@ -66,10 +66,14 @@ const TopHeader = () => {
       </Link>
       {/* <Link to="/" exact render={() => <StudentDetails />} /> */}
       {/* <Route path="/profile" component={Profile} /> */}
-      <div className="search-bar" style={searchBarStyles}>
+      {/* <div className="search-bar" style={searchBarStyles}>
         <input type="text" placeholder="        Search..." style={{ width: '100%', height: '75%', borderRadius: '25px' }} />
+      </div> */}
+      <div className="Header_names">
+      Amenities
+      Events
+      Coupons
       </div>
-
       <div style={textStyle}>
         IITDh
       </div>

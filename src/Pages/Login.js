@@ -44,9 +44,6 @@ function Login() {
 
             if (response.data) {
                 // Backend verification successful, navigate to the other page
-                setSnackbarMessage('Login successful');
-                setSnackbarSeverity('success');
-                setSnackbarOpen(true);
                 navigate('/home');
 
             } else {

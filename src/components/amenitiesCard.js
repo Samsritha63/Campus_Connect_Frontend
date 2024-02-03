@@ -6,7 +6,10 @@ import {useSelector} from "react-redux";
 
 const AmenitiesCard = ({ image, price, owner, email_id, contact_no, good_number, roll_no}) => {
     const [showContact, setShowContact] = useState(false);
-    var roll_no_recv = useSelector((state) => state.userHandler.roll_no)
+    var allKeys = Object.keys(localStorage);
+    console.log(allKeys)
+    var roll_no_recv = JSON.parse(localStorage.getItem("userInfo"))["roll_no"];
+    console.log(roll_no_recv, "this is roll number")
     const modifiedImageUrl = image.replace('/view?usp=drive_link', '/preview');
 
     const handleGetInTouch = async () => {

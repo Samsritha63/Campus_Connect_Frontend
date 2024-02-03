@@ -65,6 +65,7 @@ function Login() {
                     can_add_coupons: response.data.can_add_coupons,
                     password: response.data.password
                 }
+                localStorage.setItem('userInfo', JSON.stringify(userInfo));
                 dispatch({ type: ADD_USER_INFO, payload: userInfo });
                 navigate('/home');
 

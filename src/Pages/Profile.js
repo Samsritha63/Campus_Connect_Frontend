@@ -27,12 +27,12 @@ const Profile = () => {
 
     const navigate = useNavigate();
     const student = {
-        name: useSelector((state) => state.userHandler.name),
-        contactNumber: useSelector((state) => state.userHandler.contact_no),
-        email: useSelector((state) => state.userHandler.email_id),
-        rollNo: useSelector((state) => state.userHandler.roll_no),
-        events: useSelector((state) => state.userHandler.can_add_event),
-        coupons: useSelector((state) => state.userHandler.can_add_coupons),
+        name: JSON.parse(localStorage.getItem("userInfo"))["roll_no"],
+        contactNumber: JSON.parse(localStorage.getItem("userInfo"))["contact_no"],
+        email: JSON.parse(localStorage.getItem("userInfo"))["email_id"],
+        rollNo: JSON.parse(localStorage.getItem("userInfo"))["roll_no"],
+        events: JSON.parse(localStorage.getItem("userInfo"))["can_add_event"],
+        coupons: JSON.parse(localStorage.getItem("userInfo"))["can_add_coupons"]
     };
 
     const handleLogout = () => {

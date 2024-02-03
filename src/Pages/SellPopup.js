@@ -16,7 +16,7 @@ const SellPopup = ({ isOpen, onClose }) => {
     const [snackbarOpen, setSnackbarOpen] = useState(false);
     const [snackbarMessage, setSnackbarMessage] = useState('');
     const [registered, setRegistered] = useState(false);
-    var roll_no=useSelector((state) => state.userHandler.roll_no);
+    var roll_no=JSON.parse(localStorage.getItem("userInfo"))["roll_no"]
     console.log(roll_no,"roll dfs");
     const handleFormSubmit = (e) => {
         e.preventDefault();

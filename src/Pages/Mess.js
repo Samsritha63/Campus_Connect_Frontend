@@ -23,7 +23,7 @@ const Mess = () => {
   const navigate = useNavigate();
 
   const [isPopupOpen, setPopupOpen] = useState(false);
-const canAddCoupons = useSelector((state) => state.userHandler.can_add_coupons);
+const canAddCoupons = JSON.parse(localStorage.getItem("userInfo"))["can_add_coupons"];
   const handlePopupClose = () => {
     setPopupOpen(false);
   };
@@ -53,7 +53,7 @@ const handleChange = (e) => {
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
   const [snackbarSeverity, setSnackbarSeverity] = useState('success'); // or 'error' for failure
-  const rollNo =  useSelector((state) => state.userHandler.roll_no);
+  const rollNo = JSON.parse(localStorage.getItem("userInfo"))["roll_no"];
 
   const handleSnackbarClose = () => {
     setSnackbarOpen(false);
@@ -131,9 +131,9 @@ const handleChange = (e) => {
   return (
     <div className="App" style={{ backgroundImage: `url(${bg5})`, backgroundSize: 'contain', backgroundPosition: 'bottom'}}>
       <header className="App-header" >
-        <TopHeader color="white"/>
+        <TopHeader color="#74A662"/>
         <div className="add-button-container">
-        {canAddCoupons && <button onClick={this.downloadExcelFile}>Download Data</button>}
+        {canAddCoupons && <button style={{borderRadius:"25px", fontWeight:"bold"}} onClick={downloadExcelFile}>Download Data</button>}
         </div>
        
       </header>
@@ -177,13 +177,34 @@ function Popup({ onClose }) {
 }
 
 function Card({ title, imageSrc, onBuyClick }) {
+  const cardStyle = {
+    position: 'relative',
+    height: '350px', // Set the desired height
+    width: '200px', // Set the width to 100%
+    overflow: 'hidden',
+    borderRadius: '10px', // Add border-radius for rounded corners
+  };
+  const imageStyle = {
+    width: '200px',
+    height: '60%', // Set the image height to 70% of the card height
+    objectFit: 'cover',
+    borderRadius: '10px 10px 0 0', // Add border-radius only to the top corners
+  };
+  const titleStyle = {
+    fontSize: '20px', // Adjust the font size as needed
+    color: 'black',
+  };
+  const buttonStyle = {
+    // fontWeight: 'bold',
+    fontSize: '16px'
+  }
   return (
-    <div className="card-mess">
+    <div className="card-mess" style={cardStyle}>
       <div className="card-mess-content">
-        <img src={imageSrc} alt={title} />
-        <h2 style={{ color: 'black' }}>{title}</h2>
+        <img src={imageSrc} alt={title} style = {imageStyle} />
+        <h2 style={titleStyle}>{title}</h2>
         {/* <p style={{ color: 'black' }}>{content}</p> */}
-        <button className="buy-button" onClick={onBuyClick}>Buy</button>
+        <button className="buy-button" onClick={onBuyClick} style = {buttonStyle}>Buy</button>
       </div>
     </div>
   );

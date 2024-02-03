@@ -54,7 +54,7 @@ a.active {
   flex-direction: column;
   align-items: center;
   border-radius: 15px;
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.8);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); 
   color: black;
 }
@@ -117,9 +117,8 @@ a.active {
   color: white;
   /* padding: 7px 17px; */
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
-  font-size: 12px;
 }
 
 .buy-button:hover {
@@ -262,7 +261,7 @@ opup-container {
 }
 .add-button-container{
   position: absolute;
-  top: 40px; /* Adjust the top value as needed */
+  top: 25px; /* Adjust the top value as needed */
   right: 60px; /* Adjust the right value as needed */
   padding: 10px;
   border-radius: 5px;
@@ -285,6 +284,10 @@ opup-container {
   align-items: center;
 }
 
+.activeClass {
+  color: orange; /* Change text color for the active link */
+}
+
 .Header_names div {
   margin: 0 15px; /* Adjust the margin as needed to provide spacing between names */
   position: relative;
@@ -295,7 +298,7 @@ opup-container {
 }
 
 .Header_names div:hover {
-  color: orange; /* Change text color on hover */
+  transform: scale(1.1); /* Change text color on hover */
 }
 
 .Header_names div::after {
@@ -306,17 +309,15 @@ opup-container {
   bottom: -2px;
   height: 2px;
   background-color: transparent; /* Initial transparent color for underline */
-  transition: background-color 0.3s; /* Smooth transition for underline color change on hover */
+  /* transition: background-color 0.3s; Smooth transition for underline color change on hover */
 }
 
-.Header_names div:hover::after {
-  background-color: orange; /* Change underline color on hover */
-}
+
 
 .Title{
   position: absolute; /* or relative, fixed, etc. depending on your layout requirements */
-  top: 35px; /* adjust the top position as needed */
-  left: 200px;
+  top: 25px; /* adjust the top position as needed */
+  left: 120px;
   font-family: 'Protest Riot';
   font-size: xx-large;
 }

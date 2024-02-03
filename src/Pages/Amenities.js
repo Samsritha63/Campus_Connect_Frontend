@@ -3,9 +3,10 @@ import "./Amenities.css";
 import Utilities from "./Utilities";
 import TopHeader from "./TopHeader";
 import SellPopup from "./SellPopup";
-import bg3 from "../constants/assets/bg8.jpg"
+import bg3 from "../constants/assets/bg13.jpg"
 import {useSelector} from "react-redux"; 
 import axios from "axios";
+import { URL } from "../constants/actionTypes";
 
 const Amenities = () => {
   const [selectedTab, setSelectedTab] = useState("cycles"); // Set "Cycles" as the default tab
@@ -20,7 +21,8 @@ const Amenities = () => {
   const [snackbarMessage, setSnackbarMessage] = useState('');
   const [registered, setRegistered] = useState(false);
   const [cnt,setCnt]=useState(0);
-  var roll_no=useSelector((state) => state.userHandler.roll_no);
+  var roll_no= JSON.parse(localStorage.getItem("userInfo"))["roll_no"];
+
 
   const openSellPopup = () => {
     setSellPopupOpen(true);
@@ -34,7 +36,7 @@ const Amenities = () => {
     e.preventDefault();
     const fetchData = async()=>{
         try{
-            console.log(roll_no,"roll number")
+            console.log(roll_no,"roll number inside the sell pop up")
             var sellItemBody={
                 roll_number: roll_no,
                 category:category,
@@ -68,38 +70,38 @@ const Amenities = () => {
   return (
     <div className="App" style={{ backgroundImage: `url(${bg3})`, backgroundSize: 'cover', backgroundPosition: 'bottom'}}>
       <header className="App-header">
-        <TopHeader color="white"/>
+        <TopHeader color="#EDCF6B"/>
       </header>
       <div className="amenities-content-container">
         <div className="amenities-tabs">
-          <button
+          <div
             className={`amenities-tab ${selectedTab === "cycles" ? "active" : "default"}`}
             onClick={() => setSelectedTab("cycles")}
             style={{ color: "black" }}
           >
             Cycles
-          </button>
-          <button
-            className={`amenities-tab ${selectedTab === "Mattresses" ? "active" : ""}`}
+          </div>
+          <div
+            className={`amenities-tab ${selectedTab === "mattresses" ? "active" : ""}`}
             onClick={() => setSelectedTab("mattresses")}
             style={{ color: "black" }}
           >
             Mattresses
-          </button>
-          <button
-            className={`amenities-tab ${selectedTab === "Electronics" ? "active" : ""}`}
+          </div>
+          <div
+            className={`amenities-tab ${selectedTab === "electronics" ? "active" : ""}`}
             onClick={() => setSelectedTab("electronics")}
             style={{ color: "black" }}
           >
             Electronics
-          </button>
-          <button
+          </div>
+          <div
             className={`amenities-tab ${selectedTab === "Others" ? "active" : ""}`}
             onClick={() => setSelectedTab("Others")}
             style={{ color: "black" }}
           >
             Others
-          </button>
+          </div>
 
           <div className="sell-button">
             <button onClick={openSellPopup} style={{ color: "white", borderRadius: "25px", fontWeight: "bold" }}>

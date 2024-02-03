@@ -7,24 +7,24 @@ import { useNavigate } from 'react-router-dom';
 import EventPopup from './EventPopup';
 import axios from 'axios';
 import { URL } from '../constants/actionTypes';
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 import bg4 from "../constants/assets/bg7.jpg"
-
-
 
 const Events = () => {
   const [isEventPopupOpen, setEventPopupOpen] = useState(false);
-  // const [eventdetails,setEventsData]=useState(null);
   const [events, setEvents] = useState([]);
   const [counter, setCounter] = useState(0);
+  const [selectedEvent, setSelectedEvent] = useState(null); // Initialize with null
+  const [selectedSubEvent, setSelectedSubEvent] = useState(null);
 
   const openEventPopup = () => {
     setEventPopupOpen(true);
   };
 
   const closeEventPopup = () => {
-    setEventPopupOpen(false); 
+    setEventPopupOpen(false);
   };
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -57,6 +57,12 @@ const Events = () => {
 
         // Set the formatted data to the state
         setEvents(formattedEvents);
+
+        // Set the default selected event (e.g., "parsec 4.0") if it exists in the formatted data
+        const defaultEvent = formattedEvents.find(event => event.name === 'parsec 4.0');
+        if (defaultEvent) {
+          setSelectedEvent(defaultEvent);
+        }
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -66,55 +72,48 @@ const Events = () => {
     fetchData();
   }, [counter]);
 
-  const [selectedEvent, setSelectedEvent] = useState(events[0]);
-  const canAddEvent = useSelector((state) => state.userHandler.can_add_event);
-  const roll_num_event = useSelector((state) => state.userHandler.roll_no);
-
-  const [selectedSubEvent, setSelectedSubEvent] = useState(null);
+  const canAddEvent = JSON.parse(localStorage.getItem("userInfo"))["can_add_event"];
+  const roll_num_event = JSON.parse(localStorage.getItem("userInfo"))["roll_no"];
 
   const handleSubEventClick = (subEvent) => {
     setSelectedSubEvent(subEvent);
   };
-  // const image_url = selectedEvent.image.replace('/view?usp=drive_link', '/preview')
+
   const closeRegistrationModal = () => {
     setSelectedSubEvent(null);
   };
 
   const handleEventClick = (event) => {
     setSelectedEvent(event);
-
   };
 
   const handleDeleteClick = async (event, eventName) => {
     setSelectedEvent(event);
-  
-    // if (canAddEvent) {
-    //   const confirmDelete = window.confirm("Are you sure you want to delete this event?");
-    //   if (confirmDelete) {
-      const requestData = {
-        roll_no : roll_num_event,
-        name:eventName
-      }
-      console.log(requestData)
-        try {
-          // Make a DELETE request to your backend endpoint for deleting the event
-          await axios.post(`${URL}/deleteEvents`, requestData);
-  
-          // Reload the entire page
-          // window.location.reload();
-          setCounter(counter + 1)
-        } catch (error) {
-          console.error('Error deleting event:', error);
-          // Handle error as needed
-        }
-      }
-      return (
-        <><TopHeader/>
-        <div className="App" style={{ backgroundImage: `url(${bg4})`, backgroundSize: 'cover', backgroundPosition: 'bottom', height:'86vh' }}>
-         <div className="event-page" >
-          {/* <EventSidebar onEventClick={handleEventClick} /> */}
+    const requestData = {
+      roll_no: roll_num_event,
+      name: eventName
+    }
+    console.log(requestData)
+    try {
+      // Make a DELETE request to your backend endpoint for deleting the event
+      await axios.post(`${URL}/deleteEvents`, requestData);
+
+      // Reload the entire page
+      // window.location.reload();
+      setCounter(counter + 1);
+    } catch (error) {
+      console.error('Error deleting event:', error);
+      // Handle error as needed
+    }
+  };
+
+  return (
+    <>
+      <TopHeader color="#87CEEB" />
+      <div className="App" style={{ backgroundImage: `url(${bg4})`, backgroundSize: 'cover', backgroundPosition: 'bottom', height: '86vh' }}>
+        <div className="event-page">
           <div className="event-sidebar">
-            <h2>Events</h2>
+            <h2 style={{marginLeft:'10px', marginBottom: '25px'}}>Events</h2>
             <ul>
               {events.map((event) => (
                 <li key={event.id} className={selectedEvent && event.name === selectedEvent.name ? 'selected' : ''} onClick={() => handleEventClick(event)}>
@@ -127,8 +126,6 @@ const Events = () => {
                     ADD EVENT
                   </button> :
                   null}
-
-
               </div>
             </ul>
           </div>
@@ -136,10 +133,7 @@ const Events = () => {
             {selectedEvent ? (
               <>
                 <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <iframe className="event-image" src={selectedEvent.image.replace('/view?usp=drive_link', '/preview')} alt="Cycle" />
-                  {/* <img src={selectedEvent.image} alt={selectedEvent.name} */}
-                  {/* style={{ width: '50%', border: '1px solid #ccc' }}
-          /> */}
+                  <img className="event-image" src={selectedEvent.image.replace('/view?usp=drive_link', '/preview')} alt="Cycle" style={{ width: 250, height: 200 }} />
                   <div style={{ marginLeft: "10px" }}>
                     <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                       <p style={{ fontSize: "40px" }}>{selectedEvent.name}</p>
@@ -151,10 +145,8 @@ const Events = () => {
                     </div>
                     <p>{selectedEvent.description}</p>
                   </div>
-
                 </div>
 
-                {/* <h3>Sub Events</h3> */}
                 <ul>
                   {selectedEvent.subEvents.map((subEvent) => (
                     <li key={subEvent.id}>
@@ -164,14 +156,14 @@ const Events = () => {
                       ) : (
                         <button onClick={() => {
                           window.open(subEvent.link, '_blank');
-                        } }>Register</button>
+                        }}>Register</button>
                       )}
                     </li>
                   ))}
                 </ul>
                 <button onClick={() => {
                   window.open(selectedEvent.website_link, '_blank');
-                } }>Visit Website</button>
+                }}>Visit Website</button>
                 {selectedSubEvent && (
                   <RegistrationPopup
                     onClose={closeRegistrationModal}
@@ -185,10 +177,9 @@ const Events = () => {
           {/* Event Popup */}
           <EventPopup isOpen={isEventPopupOpen} onClose={closeEventPopup} />
         </div>
-        </div></>
-      );
-    
-  };
+      </div>
+    </>
+  );
+};
 
-  
 export default Events;

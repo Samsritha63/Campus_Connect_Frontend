@@ -11,7 +11,9 @@
 }
 
 .event-image {
-  width: 100%;
+  /* width: 100%; */
+  width: 500px;  /* Set the desired width in pixels */
+  height: 300px;
 }
 
 .popup-content {
@@ -103,8 +105,9 @@ p {
     /* background-color: #f0f0f0; */
     /* border-right: 1px solid #ccc; */
     display: flex;
+    margin-left: 20px;
     flex-direction: column;
-    text-align: center;
+    text-align: left;
     justify-content: center;
     overflow-y: auto;
   }
@@ -118,18 +121,20 @@ p {
     padding: 0;
     display: flex;
     flex-direction: column;
+    gap:15px;
   }
   
   .event-sidebar li {
     cursor: pointer;
-    padding: 8px;
+    padding: 10px;
     margin-bottom: 5px;
     border-radius: 5px;
     transition: background-color 0.3s;
   }
   
   .event-sidebar li:hover {
-    background-color: #ddd;
+    /* background-color: #c8bebe; */
+    border: 3px solid #fff;
   }
   
   .event-details {
@@ -180,7 +185,7 @@ p {
     flex-direction: row;
     justify-content: space-between;
     margin-bottom: 5px;
-    background-color: #ddd;
+    background-color: #fff;
     padding:30px;
     border-radius: 20px;
     /* width: 200px; */
@@ -216,7 +221,7 @@ p {
   
   /* Add this to highlight the selected event */
   .selected {
-    background-color: #ddd;
+    background-color: #fff;
   }
   
   /* .event-sidebar ul:hover {

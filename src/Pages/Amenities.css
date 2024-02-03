@@ -19,9 +19,10 @@
 .amenities-tabs {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   margin-bottom: 2rem;
-  width: 10%;
+  /* margin-left:50px; */
+  width: 15%;
   border-right: 1px solid #ccc;
   padding: 0;
 }
@@ -30,17 +31,18 @@
   padding: 0.5rem 1rem;
   margin: 0.5rem 0;
   border: none;
-  border-radius: 20px;
-  background-color: #f1f1f1;
+  /* border-radius: 20px; */
+  background-color: none;
   cursor: pointer;
 }
 
 .amenities-tab:hover {
-  background-color: #e0e0e0;
+  /* background-color: #fff; */
+  border: 3px solid #fff;
 }
 
 .active {
-  background-color: #d0d0d0;
+  background-color: #fff;
 }
 
 .amenities-content {

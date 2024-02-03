@@ -1,8 +1,20 @@
 import React from 'react';
 import ProfileIcon from '../constants/assets/logo.jpg';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const TopHeader = ({color}) => {
+  const location = useLocation();
+
+  const isActive = (path) => {
+    // Check if the current path matches the provided path
+    return location.pathname === path;
+  };
+
+  const activeLinkStyle = {
+    border: "2px solid #333",
+    borderRadius: "10px",
+  };
+
   const profileIconStyles = {
     position: 'absolute',
     top: '10px',
@@ -15,19 +27,23 @@ const TopHeader = ({color}) => {
 
   const Headerstyles = {
     position: 'fixed',
-    // backgroundColor: color, // Set your desired background color
+    backgroundColor: color, // Set your desired background color
     position: 'relative', // Use relative positioning
     height: '100px',
   };
 
   const extraProfileIconStyles = {
     position: 'absolute',
-    top: '37px',
+    top: '25px',
     right: '20px', // Align to the top right corner
     fontSize: '40px',
     color: '#333', // Customize color as needed
   };
 
+  const titles={
+    fontFamily: "'Pacifico', cursive",
+    // TOP
+  }
   
 
   return (
@@ -42,11 +58,17 @@ const TopHeader = ({color}) => {
           <i className="fa fa-user" aria-hidden="true"></i>
         </div>
       </Link>
-      <div className='Title'>Campus Connect </div>
+      <div className='Title' style={titles}>Campus Connect </div>
       <div className="Header_names">
-        <Link to="/amenities"><div>Amenities</div></Link>
-        <Link to="/events"><div>Events</div></Link>
-        <Link to="/mess"><div>Coupons</div></Link>
+      <Link to="/amenities" style={isActive('/amenities') ? activeLinkStyle : null}>
+        <div>Amenities</div>
+      </Link>
+      <Link to="/events" style={isActive('/events') ? activeLinkStyle : null}>
+        <div>Events</div>
+      </Link>
+      <Link to="/mess" style={isActive('/mess') ? activeLinkStyle : null}>
+        <div>Coupons</div>
+      </Link>
       </div>
     </div>
   );

@@ -2,9 +2,19 @@ import React, { useState } from "react";
 import "./Amenities.css";
 import Utilities from "./Utilities";
 import TopHeader from "./TopHeader";
+import SellPopup from "./SellPopup";
 
 const Amenities = () => {
   const [selectedTab, setSelectedTab] = useState("Cycles"); // Set "Cycles" as the default tab
+  const [isSellPopupOpen, setSellPopupOpen] = useState(false);
+
+  const openSellPopup = () => {
+    setSellPopupOpen(true);
+  };
+
+  const closeSellPopup = () => {
+    setSellPopupOpen(false);
+  };
 
   return (
     <div className="amenities-container">
@@ -41,11 +51,20 @@ const Amenities = () => {
           >
             Others
           </button>
+
+          <div className="sell-button">
+            <button onClick={openSellPopup} style={{ color: "black" }}>
+              SELL
+            </button>
+          </div>
         </div>
         <div className="amenities-content">
           <Utilities category={selectedTab} />
         </div>
       </div>
+
+      {/* Sell Popup */}
+      <SellPopup isOpen={isSellPopupOpen} onClose={closeSellPopup} />
     </div>
   );
 };

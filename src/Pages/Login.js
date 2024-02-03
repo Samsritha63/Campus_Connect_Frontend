@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { URL } from "../constants/actionTypes";
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 
 function Login() {
     const navigate = useNavigate();
@@ -26,6 +28,13 @@ function Login() {
         setShowPassword(!showPassword);
     };
 
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
+    const [snackbarMessage, setSnackbarMessage] = useState('');
+    const [snackbarSeverity, setSnackbarSeverity] = useState('success'); // or 'error' for failure
+
+    const handleSnackbarClose = () => {
+        setSnackbarOpen(false);
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -35,10 +44,17 @@ function Login() {
 
             if (response.data) {
                 // Backend verification successful, navigate to the other page
+                setSnackbarMessage('Login successful');
+                setSnackbarSeverity('success');
+                setSnackbarOpen(true);
                 navigate('/home');
+
             } else {
                 // Handle login failure, show an error message, etc.
                 console.error('Login failed:', response);
+                setSnackbarMessage('Incorrect password');
+                setSnackbarSeverity('error');
+                setSnackbarOpen(true);
             }
         } catch (error) {
             console.error('Error during login:', error.message);
@@ -86,6 +102,11 @@ function Login() {
 
                 <button type="submit">Login</button>
             </form>
+            <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={handleSnackbarClose}>
+                <MuiAlert elevation={6} variant="filled" severity={snackbarSeverity} onClose={handleSnackbarClose}>
+                    {snackbarMessage}
+                </MuiAlert>
+            </Snackbar>
         </div>
     );
 }

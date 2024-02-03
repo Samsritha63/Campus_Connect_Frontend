@@ -30,8 +30,8 @@ const AmenitiesCard = ({ image, price, owner }) => {
                         <p>Phone: +1234567890</p>
                     </div>
                 )} */}
-                <button className="get-in-touch-button" onClick={handleGetInTouch}>
-                    Get in Touch
+                <button disabled={showContact} className="get-in-touch-button" onClick={handleGetInTouch}>
+                    {showContact ? 'Message sent' : 'Get in Touch'}
                 </button>
             </div>
         </div>

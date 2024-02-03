@@ -7,7 +7,7 @@ body {
 
 .event-page {
     display: flex;
-    overflow: hidden;
+    overflow-y: hidden;
   }
   
   .event-sidebar {
@@ -49,6 +49,8 @@ body {
   .event-details {
     flex: 1;
     padding: 20px;
+    height: 94vh;
+    overflow-y: auto;
     /* overflow: scroll; */
     overflow-y: auto;
     display: flex;

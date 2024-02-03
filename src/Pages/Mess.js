@@ -152,9 +152,7 @@ const handleChange = (e) => {
           <Card title="Dinner" imageSrc={Dinner} onBuyClick={() => handleBuyClick("Dinner")}/>
           <Card title="Non-Veg" imageSrc={nonveg} onBuyClick={() => handleBuyClick("Non-Veg")}/>
           <Card title="Special Dinner" imageSrc={SpecialD} onBuyClick={() => handleBuyClick("Special Dinner")}/>
-          <Card title="Name1" imageSrc={SpecialD} onBuyClick={() => handleBuyClick("Name1")}/>
-          <Card title="Name2" imageSrc={SpecialD} onBuyClick={() => handleBuyClick("Name2")}/>
-          <Card title="Name3" imageSrc={SpecialD} onBuyClick={() => handleBuyClick("Name3")}/>
+          <Card title="Special Lunch" imageSrc={SpecialD} onBuyClick={() => handleBuyClick("Special Lunch")}/>
         </div>
       </main>
       <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={handleSnackbarClose}>

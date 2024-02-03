@@ -1,8 +1,11 @@
 // src/App.js
 import React, { useState } from 'react';
 import '../App.css';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
+    const navigate = useNavigate();
+
     const [formData, setFormData] = useState({
         name: '',
         contactNumber: '',
@@ -19,6 +22,7 @@ function Login() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        navigate('/home');
         // Add your login logic here using formData
         console.log('Login data submitted:', formData);
     };

@@ -1,15 +1,12 @@
 import React, { useState } from "react";
 import "./Amenities.css";
-import Cycles from "./Cycles";
-import Mattresses from "./Mattresses";
-import Electronics from "./Electronics";
-import Others from "./Others";
+import Utilities from "./Utilities";
 import TopHeader from "./TopHeader";
+
 const Amenities = () => {
-  const [selectedTab, setSelectedTab] = useState("Home");
+  const [selectedTab, setSelectedTab] = useState("Cycles"); // Set "Cycles" as the default tab
 
   return (
-
     <div className="amenities-container">
       <header className="App-header">
         <TopHeader />
@@ -17,7 +14,7 @@ const Amenities = () => {
       <div className="amenities-content-container">
         <div className="amenities-tabs">
           <button
-            className={`amenities-tab ${selectedTab === "Cycles" ? "active default" : ""}`}
+            className={`amenities-tab ${selectedTab === "Cycles" ? "active" : "default"}`}
             onClick={() => setSelectedTab("Cycles")}
             style={{ color: "black" }}
           >
@@ -46,10 +43,7 @@ const Amenities = () => {
           </button>
         </div>
         <div className="amenities-content">
-          {selectedTab === "Cycles" && <Cycles />}
-          {selectedTab === "Mattresses" && <Mattresses />}
-          {selectedTab === "Electronics" && <Electronics />}
-          {selectedTab === "Others" && <Others />}
+          <Utilities category={selectedTab} />
         </div>
       </div>
     </div>

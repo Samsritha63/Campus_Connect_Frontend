@@ -13,6 +13,14 @@
     object-fit: cover;
     border-radius: 10px 10px 0 0;
   }
+  .cycles-card {
+    text-align: center;
+  }
+
+  .cycles-card img {
+    display: block;
+    margin: auto;
+  }
 
   .contact-details p {
     margin-bottom: 1px; 

@@ -170,6 +170,16 @@ a.active {
   justify-content: center;
 }
 
+.password-input-container {
+  position: relative;
+}
+
+.eye-icon {
+  position: absolute;
+  top: 5px;
+  right: 2px;
+}
+
 .login-form {
   display: flex;
   flex-direction: column;

@@ -1,6 +1,6 @@
 import React from 'react';
 import ProfileIcon from '../constants/assets/logo.jpg';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const TopHeader = ({color}) => {
   const profileIconStyles = {
@@ -14,7 +14,8 @@ const TopHeader = ({color}) => {
   };
 
   const Headerstyles = {
-    backgroundColor: color, // Set your desired background color
+    position: 'fixed',
+    // backgroundColor: color, // Set your desired background color
     position: 'relative', // Use relative positioning
     height: '100px',
   };

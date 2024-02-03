@@ -78,7 +78,6 @@ const Cycles = ({ category }) => {
       try {
         const response = await axios.post(`${URL}/getItems`, { 'category': category });
         const data = response.data;
-        console.log(data, "yyyyyyyy")
 
         // Filter the data based on the selected category
         // const filteredData = data.filter(item => item.category.toLowerCase() === category.toLowerCase());

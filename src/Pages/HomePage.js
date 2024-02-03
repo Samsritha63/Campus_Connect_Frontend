@@ -11,7 +11,7 @@ import bg2 from "../constants/assets/bg2.jpg"
 
 function App() {
   return (
-    <div className="App" style={{ backgroundImage: `url(${bg2})`, backgroundSize: 'contain', backgroundPosition: 'bottom'}}>
+    <div className="App" style={{ backgroundImage: `url(${bg2})`, backgroundSize: 'contain', backgroundPosition: 'bottom' , height: '100vh'}}>
       <header className="App-header">
         <TopHeader color="#FFBBD0"/>
       </header>
@@ -19,7 +19,7 @@ function App() {
       <main className="main-cards">
         <Link to="/Amenities">
           <Card
-            title=""
+            title="Memories On Sale"
             content="Is this a Fish Market? It might just as well be!"
             imageSrc={amenities}
           />
@@ -28,12 +28,12 @@ function App() {
           <Card
             imageSrc={Event}
             title="Events"
-            content="Check out upcoming events and activities."
+            content="You definitely did not register yet..."
           />
         </Link>
         <Link to="/Mess">
           <Card
-            title="Mess"
+            title="Save your meal"
             content="Save on your meals with exclusive mess coupons."
             imageSrc={coupons}
           />
@@ -45,7 +45,7 @@ function App() {
 
 function Card({ title, content, imageSrc }) {
   return (
-    <div style={{backgroundColor:'#fff'}} className="card">
+    <div className="card">
       <div className="card-content">
         <img src={imageSrc} alt={title} />
         <h2 style={{ color: 'black' }}>{title}</h2>

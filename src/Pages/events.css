@@ -11,7 +11,7 @@
 }
 
 .event-image {
-  width: 50%;
+  width: 100%;
 }
 
 .popup-content {
@@ -100,8 +100,8 @@ p {
     width: 20%;
     height: 77vh;
     padding: 20px;
-    background-color: #f0f0f0;
-    border-right: 1px solid #ccc;
+    /* background-color: #f0f0f0; */
+    /* border-right: 1px solid #ccc; */
     display: flex;
     flex-direction: column;
     text-align: center;

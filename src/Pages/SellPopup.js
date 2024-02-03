@@ -11,8 +11,9 @@ const SellPopup = ({ isOpen, onClose }) => {
     const [itemName, setItemName] = useState('');
     const [image, setImage] = useState('');
     const [cost, setCost] =useState("");
-    const [openSnackbar, setOpenSnackbar] = useState(false);
+    // const [openSnackbar, setOpenSnackbar] = useState(false);
     const [snackbarSeverity, setSnackbarSeverity] = useState('success'); // or 'error' for unsuccessful
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
     const [snackbarMessage, setSnackbarMessage] = useState('');
     const [registered, setRegistered] = useState(false);
     var roll_no=useSelector((state) => state.userHandler.roll_no);
@@ -39,22 +40,26 @@ const SellPopup = ({ isOpen, onClose }) => {
                 setRegistered(true);
                 setSnackbarSeverity('success');
                 setSnackbarMessage('Submission successful!');
-                setOpenSnackbar(true);
+                setSnackbarOpen(true);
             }
             catch(error){
                 console.error('Error fetching data:', error);
                 setSnackbarSeverity('error');
                 setSnackbarMessage('Submission failed. Please try again.');
-                setOpenSnackbar(true);
+                setSnackbarOpen(true);
         
                }        
         }
        fetchData();
+       setRegistered(true);
     };
 
-    const handleCloseSnackbar = () => {
-        setOpenSnackbar(false);
-      };
+    // const handleCloseSnackbar = () => {
+    //     setOpenSnackbar(false);
+    //   };
+      const handleSnackbarClose = () => {
+        setSnackbarOpen(false);
+    };
 
     return (
         <div className={`sell-popup ${isOpen ? "open" : ""}`}>
@@ -62,7 +67,7 @@ const SellPopup = ({ isOpen, onClose }) => {
                 <span className="sell-popup-close" onClick={onClose}>
                     &times;
                 </span>
-                <form >
+                {!registered ? <form >
                     {/* <label>
                         Roll No:
                         <input type="text" value={rollNo} onChange={(e) => setRollNo(e.target.value)} />
@@ -89,21 +94,12 @@ const SellPopup = ({ isOpen, onClose }) => {
                     </label>
                     <br />
                     <button type="submit" onClick={handleFormSubmit} >Submit</button>
-                </form>
-                <Snackbar
-        open={openSnackbar}
-        autoHideDuration={6000}
-        onClose={handleCloseSnackbar}
-      >
-        <MuiAlert
-          elevation={6}
-          variant="filled"
-          onClose={handleCloseSnackbar}
-          severity={snackbarSeverity}
-        >
-          {snackbarMessage}
-        </MuiAlert>
-      </Snackbar>
+                </form>: <div>Thank you for registering your item.</div> }
+                <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={handleSnackbarClose}>
+                    <MuiAlert elevation={6} variant="filled" severity={snackbarSeverity} onClose={handleSnackbarClose}>
+                        {snackbarMessage}
+                    </MuiAlert>
+                </Snackbar>
             </div>
         </div>
     );

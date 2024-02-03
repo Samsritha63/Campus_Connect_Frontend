@@ -3,10 +3,12 @@ import './events.css';
 // import event1 from '../constants/assets/OIP.jpeg';
 import TopHeader from './TopHeader';
 import RegistrationPopup from '../components/RegistrationPopup';
+import { useNavigate } from 'react-router-dom';
 import EventPopup from './EventPopup';
 import axios from 'axios';
 import { URL } from '../constants/actionTypes';
 import {useSelector} from "react-redux";
+import bg4 from "../constants/assets/bg7.jpg"
 
 
 
@@ -14,6 +16,7 @@ const Events = () => {
   const [isEventPopupOpen, setEventPopupOpen] = useState(false);
   // const [eventdetails,setEventsData]=useState(null);
   const [events, setEvents] = useState([]);
+  const [counter, setCounter] = useState(0);
 
   const openEventPopup = () => {
     setEventPopupOpen(true);
@@ -22,6 +25,8 @@ const Events = () => {
   const closeEventPopup = () => {
     setEventPopupOpen(false); 
   };
+  const navigate = useNavigate();
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -59,7 +64,7 @@ const Events = () => {
 
     // Call the fetchData function when the component mounts
     fetchData();
-  }, []);
+  }, [counter]);
 
   const [selectedEvent, setSelectedEvent] = useState(events[0]);
   const canAddEvent = useSelector((state) => state.userHandler.can_add_event);
@@ -93,96 +98,94 @@ const Events = () => {
       console.log(requestData)
         try {
           // Make a DELETE request to your backend endpoint for deleting the event
-          await axios.delete(`${URL}/events`, requestData);
+          await axios.post(`${URL}/deleteEvents`, requestData);
   
           // Reload the entire page
-          window.location.reload();
+          // window.location.reload();
+          setCounter(counter + 1)
         } catch (error) {
           console.error('Error deleting event:', error);
           // Handle error as needed
         }
       }
       return (
-        <>
-          <TopHeader color="#FFBBD0"/>
-          <div className="event-page">
-    
-            {/* <EventSidebar onEventClick={handleEventClick} /> */}
-            <div className="event-sidebar">
-              <h2>Events</h2>
-              <ul>
-                {events.map((event) => (
-                  <li key={event.id} className={selectedEvent && event.name === selectedEvent.name ? 'selected' : ''} onClick={() => handleEventClick(event)}>
-                    {event.name}
-                  </li>
-                ))}
-                    <div className="event-button">
-                    {canAddEvent ?
-                    <button onClick={openEventPopup} style={{ color: "white", borderRadius: "25px", fontWeight: "bold" }}>
-                      ADD EVENT
-                    </button> :
-                    null
-                  }
-    
-        
+        <><TopHeader/>
+        <div className="App" style={{ backgroundImage: `url(${bg4})`, backgroundSize: 'cover', backgroundPosition: 'bottom', height:'86vh' }}>
+         <div className="event-page" >
+          {/* <EventSidebar onEventClick={handleEventClick} /> */}
+          <div className="event-sidebar">
+            <h2>Events</h2>
+            <ul>
+              {events.map((event) => (
+                <li key={event.id} className={selectedEvent && event.name === selectedEvent.name ? 'selected' : ''} onClick={() => handleEventClick(event)}>
+                  {event.name}
+                </li>
+              ))}
+              <div className="event-button">
+                {canAddEvent ?
+                  <button onClick={openEventPopup} style={{ color: "white", borderRadius: "25px", fontWeight: "bold" }}>
+                    ADD EVENT
+                  </button> :
+                  null}
+
+
               </div>
-              </ul>
-            </div>
-            <div className="event-details">
-              {selectedEvent ? (
-                <>
-                  <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'sapce-between', alignItems: 'center' }}>
-                  <iframe className="event-image" src={selectedEvent.image.replace('/view?usp=drive_link', '/preview')} alt="Cycle" />
-                    {/* <img src={selectedEvent.image} alt={selectedEvent.name} */}
-                      {/* style={{ width: '50%', border: '1px solid #ccc' }}
-                    /> */}
-                    <div style={{ marginLeft: "10px" }}>
-      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-        <p style={{ fontSize: "40px" }}>{selectedEvent.name}</p>
-        {canAddEvent ? 
-          <button onClick={() => handleDeleteClick(selectedEvent, selectedEvent.name)}>
-          Delete Event
-        </button>
-         : null}
-      </div>
-      <p>{selectedEvent.description}</p>
-    </div>
-    
-                  </div>
-    
-                  {/* <h3>Sub Events</h3> */}
-                  <ul>
-                    {selectedEvent.subEvents.map((subEvent) => (
-                      <li key={subEvent.id}>
-                        {subEvent.name}
-                        {selectedSubEvent && selectedSubEvent.id === subEvent.id ? (
-                          'Registered'
-                        ) : (
-                          <button onClick={()=> {
-                            window.open(subEvent.link,'_blank');
-                          }}>Register</button>
-                        )}
-                      </li>
-                    ))}
-                  </ul>
-                  <button onClick={()=> {
-                    window.open(selectedEvent.website_link,'_blank')
-                  }}>Visit Website</button>
-                  {selectedSubEvent && (
-                    <RegistrationPopup
-                      onClose={closeRegistrationModal}
-                      subEventName={selectedSubEvent.name}
-                    />
-                  )}
-                </>
-              ) : (
-                <p>Select an event from the sidebar to view details.</p>
-              )}
-            </div>
-                  {/* Event Popup */}
-          <EventPopup isOpen={isEventPopupOpen} onClose={closeEventPopup} />
+            </ul>
           </div>
-        </>
+          <div className="event-details">
+            {selectedEvent ? (
+              <>
+                <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <iframe className="event-image" src={selectedEvent.image.replace('/view?usp=drive_link', '/preview')} alt="Cycle" />
+                  {/* <img src={selectedEvent.image} alt={selectedEvent.name} */}
+                  {/* style={{ width: '50%', border: '1px solid #ccc' }}
+          /> */}
+                  <div style={{ marginLeft: "10px" }}>
+                    <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <p style={{ fontSize: "40px" }}>{selectedEvent.name}</p>
+                      {canAddEvent ?
+                        <button onClick={() => handleDeleteClick(selectedEvent, selectedEvent.name)}>
+                          Delete Event
+                        </button>
+                        : null}
+                    </div>
+                    <p>{selectedEvent.description}</p>
+                  </div>
+
+                </div>
+
+                {/* <h3>Sub Events</h3> */}
+                <ul>
+                  {selectedEvent.subEvents.map((subEvent) => (
+                    <li key={subEvent.id}>
+                      {subEvent.name}
+                      {selectedSubEvent && selectedSubEvent.id === subEvent.id ? (
+                        'Registered'
+                      ) : (
+                        <button onClick={() => {
+                          window.open(subEvent.link, '_blank');
+                        } }>Register</button>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+                <button onClick={() => {
+                  window.open(selectedEvent.website_link, '_blank');
+                } }>Visit Website</button>
+                {selectedSubEvent && (
+                  <RegistrationPopup
+                    onClose={closeRegistrationModal}
+                    subEventName={selectedSubEvent.name} />
+                )}
+              </>
+            ) : (
+              <p>Select an event from the sidebar to view details.</p>
+            )}
+          </div>
+          {/* Event Popup */}
+          <EventPopup isOpen={isEventPopupOpen} onClose={closeEventPopup} />
+        </div>
+        </div></>
       );
     
   };

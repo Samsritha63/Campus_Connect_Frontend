@@ -15,13 +15,15 @@ import nonveg from "../constants/assets/nonveg.jpg";
 import SpecialD from "../constants/assets/specialDinner.jpg";
 import CouponPopup from './CouponPopup';
 import {useSelector} from "react-redux"; 
+import exportFromJSON from 'export-from-json';
 import { URL } from '../constants/actionTypes';
+import bg5 from "../constants/assets/bg9.jpg"
 
 const Mess = () => {
   const navigate = useNavigate();
 
   const [isPopupOpen, setPopupOpen] = useState(false);
-
+const canAddCoupons = useSelector((state) => state.userHandler.can_add_coupons);
   const handlePopupClose = () => {
     setPopupOpen(false);
   };
@@ -58,6 +60,7 @@ const handleChange = (e) => {
   };
 
   const downloadExcelFile = async () => {
+    console.log("calling this function")
     try {
       axios
         .post(`${URL}/getCSV`, {
@@ -66,16 +69,16 @@ const handleChange = (e) => {
             "Access-Control-Allow-Origin": "*",
             "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE",
             "Access-Control-Allow-Headers": "Content-Type",
-          },
-          responseType: 'blob',
+          }
         })
+       
         .then((response) => {
-          const url = window.URL.createObjectURL(new Blob([response.data]));
-          const link = document.createElement('a');
-          link.href = url;
-          link.setAttribute('download', `analytics.xlsx`);
-          document.body.appendChild(link);
-          link.click();
+          
+          const data = response.data;
+          const fileName = 'coupons data';
+        const exportType = 'xls';
+          exportFromJSON({ data, fileName, exportType });
+        
         });
     } catch (error) {
       console.error("Error downloading the excel file in the backend:", error);
@@ -126,20 +129,17 @@ const handleChange = (e) => {
   };
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <TopHeader color="#FFBBD0"/>
+    <div className="App" style={{ backgroundImage: `url(${bg5})`, backgroundSize: 'contain', backgroundPosition: 'bottom'}}>
+      <header className="App-header" >
+        <TopHeader color="white"/>
         <div className="add-button-container">
-          <button onClick={openEventPopup} style={{borderRadius: '25px'}}>ADD COUPON</button>
+        {canAddCoupons && <button onClick={this.downloadExcelFile}>Download Data</button>}
         </div>
-        <div className="del-button-container">
-          <button style={{borderRadius: '25px', background: 'red'}}>DELETE COUPON</button>
-        </div>
+       
       </header>
 
-      <main className="main-cards-mess">
+      <main style={{ backgroundImage: `url(${bg5})`, backgroundSize: 'cover', backgroundPosition: 'bottom'}} className="main-cards-mess">
         <div className="cards-container">
-          <a onClick={()=>downloadExcelFile()}>hiii frds</a>
           <Card title="Breakfast" imageSrc={breakfast} onBuyClick={() => handleBuyClick("Breakfast")} />
           <Card title="Lunch" imageSrc={lunch} onBuyClick={() => handleBuyClick("Lunch")}/>
           <Card title="Snacks" imageSrc={snacks} onBuyClick={() => handleBuyClick("Snacks")}/>
